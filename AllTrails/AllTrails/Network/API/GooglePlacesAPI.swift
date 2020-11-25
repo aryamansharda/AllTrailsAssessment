@@ -36,12 +36,13 @@ enum GooglePlacesAPI: API {
 
         switch self {
         case .getNearbyPlaces(let query):
+            print(query)
             return [
                 URLQueryItem(name: "key", value: apiKey),
                 URLQueryItem(name: "location", value: "37.773972, -122.431297"),
-                URLQueryItem(name: "keyword", value: /*query*/ "pizza"),
+                URLQueryItem(name: "keyword", value: "pizza"),
                 URLQueryItem(name: "language", value: Locale.current.languageCode),
-                URLQueryItem(name: "rankby", value: "distance"),
+                URLQueryItem(name: "rankby", value: "distance")
             ]
         }
     }

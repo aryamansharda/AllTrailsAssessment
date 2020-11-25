@@ -85,6 +85,9 @@
                                                                 <constraint firstAttribute="width" constant="22" id="fCj-r0-SAL"/>
                                                             </constraints>
                                                             <state key="normal" image="favoriteUnselected"/>
+                                                            <connections>
+                                                                <action selector="didPressFavorite:" destination="7g9-cy-AVP" eventType="touchUpInside" id="gGM-aH-hVp"/>
+                                                            </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="u5f-oW-pZg">
                                                             <rect key="frame" x="82" y="8" width="238" height="74"/>
@@ -133,6 +136,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="containerView" destination="572-aH-FH9" id="Kvl-J5-JuN"/>
+                                            <outlet property="favoriteButton" destination="t4d-bz-4Kf" id="w90-X7-bdg"/>
                                             <outlet property="placeNameLabel" destination="lP0-5p-9KF" id="zgi-eb-acD"/>
                                             <outlet property="supportingTextLabel" destination="how-YA-one" id="HK5-lz-82b"/>
                                             <outlet property="thumbnailImageView" destination="Zwn-8R-AV6" id="QZB-Bp-9CL"/>

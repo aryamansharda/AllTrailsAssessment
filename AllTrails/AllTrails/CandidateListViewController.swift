@@ -62,6 +62,7 @@ class CandidateCell: UITableViewCell {
     @IBOutlet fileprivate(set) var thumbnailImageView: UIImageView!
     @IBOutlet fileprivate(set) var placeNameLabel: UILabel!
     @IBOutlet fileprivate(set) var supportingTextLabel: UILabel!
+    @IBOutlet fileprivate(set) var favoriteButton: UIButton!
 
     weak var delegate: CandidateCellDelegate?
 
@@ -77,6 +78,15 @@ class CandidateCell: UITableViewCell {
                                              .layerMinXMinYCorner]
 
         contentView.backgroundColor = Asset.Colors.background.color
+    }
+
+    @IBAction func didPressFavorite(_ sender: UIButton) {
+        favoriteButton.isSelected = !favoriteButton.isSelected
+        if favoriteButton.isSelected {
+            favoriteButton.setImage(Asset.Assets.favoriteUnselected.image, for: .normal)
+        } else {
+            favoriteButton.setImage(Asset.Assets.favoriteSelected.image, for: .normal)
+        }
     }
 
     func configure(place: Place) {
