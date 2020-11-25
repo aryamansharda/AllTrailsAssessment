@@ -32,13 +32,11 @@ enum GooglePlacesAPI: API {
     }
 
     var parameters: [URLQueryItem] {
-        let apiKey = "AIzaSyDIKzjfQQCahwJ9yEr8gBU9TqJ3MvbPXyY"
-
         switch self {
         case .getNearbyPlaces(let query):
             print(query)
             return [
-                URLQueryItem(name: "key", value: apiKey),
+                URLQueryItem(name: "key", value: GooglePlacesAPI.key),
                 URLQueryItem(name: "location", value: "37.773972, -122.431297"),
                 URLQueryItem(name: "keyword", value: "pizza"),
                 URLQueryItem(name: "language", value: Locale.current.languageCode),
@@ -52,5 +50,15 @@ enum GooglePlacesAPI: API {
         case .getNearbyPlaces:
             return .get
         }
+    }
+}
+
+extension GooglePlacesAPI {
+    static func generatePhotoURL(from photoReference: String) -> String {
+        "https://maps.googleapis.com/maps/api/place/photo?key=\(key)&maxwidth=100&photoreference=\(photoReference)"
+    }
+
+    static var key: String {
+        "AIzaSyDIKzjfQQCahwJ9yEr8gBU9TqJ3MvbPXyY"
     }
 }
