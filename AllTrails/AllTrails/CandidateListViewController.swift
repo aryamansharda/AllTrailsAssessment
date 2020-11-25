@@ -77,6 +77,8 @@ class CandidateCell: UITableViewCell {
                                              .layerMinXMaxYCorner,
                                              .layerMinXMinYCorner]
 
+        placeNameLabel.font = TextStyle.bold.font
+        supportingTextLabel.font = TextStyle.subtitle.font
         contentView.backgroundColor = Asset.Colors.background.color
     }
 

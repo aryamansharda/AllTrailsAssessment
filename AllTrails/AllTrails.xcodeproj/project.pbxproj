@@ -19,7 +19,6 @@
 		C16DC6D8256DF327004F27CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C16DC6D6256DF327004F27CE /* LaunchScreen.storyboard */; };
 		C16DC6E3256DF327004F27CE /* AllTrailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6E2256DF327004F27CE /* AllTrailsTests.swift */; };
 		C16DC6EE256DF327004F27CE /* AllTrailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6ED256DF327004F27CE /* AllTrailsUITests.swift */; };
-		C16DC703256DF375004F27CE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC702256DF375004F27CE /* Theme.swift */; };
 		C16DC70C256DF398004F27CE /* UIImageView+RemoteImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC70A256DF398004F27CE /* UIImageView+RemoteImageURL.swift */; };
 		C16DC70D256DF398004F27CE /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC70B256DF398004F27CE /* UIView+AutoLayout.swift */; };
 		C16DC712256DF3C9004F27CE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC711256DF3C9004F27CE /* API.swift */; };
@@ -27,7 +26,9 @@
 		C16DC71C256DF3E8004F27CE /* GooglePlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC71B256DF3E8004F27CE /* GooglePlacesAPI.swift */; };
 		C1A6BF4F256E34770098F6B3 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6BF4E256E34770098F6B3 /* Assets.swift */; };
 		C1A6BF56256E3A920098F6B3 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A6BF54256E3A920098F6B3 /* ProximaNova-Regular.otf */; };
-		C1A6BF57256E3A920098F6B3 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A6BF55256E3A920098F6B3 /* Proxima Nova Bold.otf */; };
+		C1A6BF57256E3A920098F6B3 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A6BF55256E3A920098F6B3 /* ProximaNova-Bold.otf */; };
+		C1A6BFC4256ED1C20098F6B3 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6BFC3256ED1C20098F6B3 /* Fonts.swift */; };
+		C1A6C01A256ED2A80098F6B3 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C019256ED2A70098F6B3 /* TextStyle.swift */; };
 		C1DDEE1C256E022D00F861DC /* NearbyPlacesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE1B256E022D00F861DC /* NearbyPlacesResponse.swift */; };
 		C1DDEE2C256E1C8700F861DC /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE29256E1C8700F861DC /* Storyboard.swift */; };
 		C1DDEE2D256E1C8700F861DC /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE2A256E1C8700F861DC /* L10n.swift */; };
@@ -72,7 +73,6 @@
 		C16DC6E9256DF327004F27CE /* AllTrailsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllTrailsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C16DC6ED256DF327004F27CE /* AllTrailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTrailsUITests.swift; sourceTree = "<group>"; };
 		C16DC6EF256DF327004F27CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C16DC702256DF375004F27CE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		C16DC70A256DF398004F27CE /* UIImageView+RemoteImageURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+RemoteImageURL.swift"; sourceTree = "<group>"; };
 		C16DC70B256DF398004F27CE /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		C16DC711256DF3C9004F27CE /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -80,7 +80,9 @@
 		C16DC71B256DF3E8004F27CE /* GooglePlacesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesAPI.swift; sourceTree = "<group>"; };
 		C1A6BF4E256E34770098F6B3 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		C1A6BF54256E3A920098F6B3 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
-		C1A6BF55256E3A920098F6B3 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Bold.otf"; sourceTree = "<group>"; };
+		C1A6BF55256E3A920098F6B3 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
+		C1A6BFC3256ED1C20098F6B3 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		C1A6C019256ED2A70098F6B3 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		C1DDEE1B256E022D00F861DC /* NearbyPlacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlacesResponse.swift; sourceTree = "<group>"; };
 		C1DDEE29256E1C8700F861DC /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		C1DDEE2A256E1C8700F861DC /* L10n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
@@ -167,11 +169,9 @@
 		C16DC6CA256DF325004F27CE /* AllTrails */ = {
 			isa = PBXGroup;
 			children = (
-				C1A6BF53256E3A850098F6B3 /* Supporting Files */,
 				C1DDEE28256E1C7300F861DC /* Resources */,
 				C16DC6CB256DF325004F27CE /* AppDelegate.swift */,
 				C16DC6CD256DF325004F27CE /* SceneDelegate.swift */,
-				C16DC701256DF361004F27CE /* Styling */,
 				C16DC700256DF34E004F27CE /* Extensions */,
 				C16DC6FF256DF348004F27CE /* Network */,
 				C16DC6FE256DF33E004F27CE /* Models */,
@@ -230,14 +230,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C16DC701256DF361004F27CE /* Styling */ = {
-			isa = PBXGroup;
-			children = (
-				C16DC702256DF375004F27CE /* Theme.swift */,
-			);
-			path = Styling;
-			sourceTree = "<group>";
-		};
 		C16DC726256DF3F3004F27CE /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,7 +242,7 @@
 		C1A6BF53256E3A850098F6B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C1A6BF55256E3A920098F6B3 /* Proxima Nova Bold.otf */,
+				C1A6BF55256E3A920098F6B3 /* ProximaNova-Bold.otf */,
 				C1A6BF54256E3A920098F6B3 /* ProximaNova-Regular.otf */,
 			);
 			path = "Supporting Files";
@@ -259,9 +251,12 @@
 		C1DDEE28256E1C7300F861DC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C1A6BF53256E3A850098F6B3 /* Supporting Files */,
 				C1DDEE2A256E1C8700F861DC /* L10n.swift */,
 				C1A6BF4E256E34770098F6B3 /* Assets.swift */,
 				C1DDEE29256E1C8700F861DC /* Storyboard.swift */,
+				C1A6BFC3256ED1C20098F6B3 /* Fonts.swift */,
+				C1A6C019256ED2A70098F6B3 /* TextStyle.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -377,7 +372,7 @@
 				C16DC6D8256DF327004F27CE /* LaunchScreen.storyboard in Resources */,
 				C1A6BF56256E3A920098F6B3 /* ProximaNova-Regular.otf in Resources */,
 				C1DDEE3B256E1CD500F861DC /* Colors.xcassets in Resources */,
-				C1A6BF57256E3A920098F6B3 /* Proxima Nova Bold.otf in Resources */,
+				C1A6BF57256E3A920098F6B3 /* ProximaNova-Bold.otf in Resources */,
 				C16DC6D5256DF327004F27CE /* Assets.xcassets in Resources */,
 				C16DC6D3256DF325004F27CE /* Main.storyboard in Resources */,
 			);
@@ -510,15 +505,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C16DC712256DF3C9004F27CE /* API.swift in Sources */,
+				C1A6BFC4256ED1C20098F6B3 /* Fonts.swift in Sources */,
 				C1DDEE2C256E1C8700F861DC /* Storyboard.swift in Sources */,
 				C1DDEE1C256E022D00F861DC /* NearbyPlacesResponse.swift in Sources */,
 				C16DC70C256DF398004F27CE /* UIImageView+RemoteImageURL.swift in Sources */,
+				C1A6C01A256ED2A80098F6B3 /* TextStyle.swift in Sources */,
 				C16DC71C256DF3E8004F27CE /* GooglePlacesAPI.swift in Sources */,
 				C16DC70D256DF398004F27CE /* UIView+AutoLayout.swift in Sources */,
 				C12CF371256E254100FD4651 /* CandidateListViewController.swift in Sources */,
 				C16DC6D0256DF325004F27CE /* MainViewController.swift in Sources */,
 				C1A6BF4F256E34770098F6B3 /* Assets.swift in Sources */,
-				C16DC703256DF375004F27CE /* Theme.swift in Sources */,
 				C1DDEE2D256E1C8700F861DC /* L10n.swift in Sources */,
 				C16DC6CC256DF325004F27CE /* AppDelegate.swift in Sources */,
 				C16DC717256DF3D7004F27CE /* NetworkManager.swift in Sources */,
