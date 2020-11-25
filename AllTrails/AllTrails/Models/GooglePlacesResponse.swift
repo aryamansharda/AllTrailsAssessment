@@ -19,7 +19,7 @@ struct Candidate: Decodable {
     let geometry: Geometry
     let icon: String
     let name: String
-    let openingHours: OpeningHours
+    let openingHours: OpeningHours?
     let photos: [Photo]
     let rating: Double
 
