@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  AllTrails
+
+  Created by Aryaman Sharda on 11/25/20.
+  
+*/
+"candidate_restaurant_open" = "Open";
+"candidate_restaurant_closed" = "Closed";
+"bullet_point" = " • ";

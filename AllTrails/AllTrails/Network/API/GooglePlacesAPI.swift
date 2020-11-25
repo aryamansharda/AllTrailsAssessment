@@ -40,7 +40,8 @@ enum GooglePlacesAPI: API {
                 URLQueryItem(name: "location", value: "37.773972, -122.431297"),
                 URLQueryItem(name: "keyword", value: "pizza"),
                 URLQueryItem(name: "language", value: Locale.current.languageCode),
-                URLQueryItem(name: "rankby", value: "distance")
+                URLQueryItem(name: "rankby", value: "distance"),
+                URLQueryItem(name: "type", value: "restaurant")
             ]
         }
     }

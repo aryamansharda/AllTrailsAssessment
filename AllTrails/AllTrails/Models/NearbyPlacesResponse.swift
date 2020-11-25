@@ -20,16 +20,27 @@ struct Place: Decodable {
     let name: String
     let openingHours: OpeningHours?
     let photos: [Photo]
+    let priceLevel: Int?
+    let rating: Double
     let placeID, reference: String
     let types: [String]
     let vicinity: String
+    let userRatingsTotal: Int
 
     enum CodingKeys: String, CodingKey {
-        case geometry, icon, id, name
+        case geometry
+        case icon
+        case id
+        case name
         case openingHours = "opening_hours"
         case photos
         case placeID = "place_id"
-        case reference, types, vicinity
+        case reference
+        case types
+        case vicinity
+        case priceLevel = "price_level"
+        case rating
+        case userRatingsTotal = "user_ratings_total"
     }
 }
 

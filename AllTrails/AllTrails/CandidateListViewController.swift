@@ -119,10 +119,29 @@ class CandidateCell: UITableViewCell {
     }
 
     func configure(place: Place, photoURL: String?) {
-        placeNameLabel.text = place.name
-
         if let photoURL = photoURL {
             thumbnailImageView.loadImageFromURL(urlString: photoURL)
         }
+
+        placeNameLabel.text = place.name
+        generateSupportingText(place)
+    }
+
+    fileprivate func generateSupportingText(_ place: Place) {
+        var supportingText = String()
+
+        if let priceLevel = place.priceLevel {
+            supportingText += String(repeating: "$", count: priceLevel)
+
+            if let isOpenNow = place.openingHours?.openNow {
+                let currentStatus = (isOpenNow ? L10n.candidateRestaurantOpen : L10n.candidateRestaurantClosed)
+                supportingText += L10n.bulletPoint + currentStatus
+            }
+
+        } else if let isOpenNow = place.openingHours?.openNow {
+            supportingText += isOpenNow ? L10n.candidateRestaurantOpen : L10n.candidateRestaurantClosed
+        }
+
+        supportingTextLabel.text = supportingText
     }
 }
