@@ -26,10 +26,14 @@ internal enum Asset {
     internal static let favoriteSelected = ImageAsset(name: "favoriteSelected")
     internal static let favoriteUnselected = ImageAsset(name: "favoriteUnselected")
     internal static let mountain = ImageAsset(name: "mountain")
+    internal static let star = ImageAsset(name: "star")
   }
   internal enum Colors {
     internal static let background = ColorAsset(name: "background")
+    internal static let boldText = ColorAsset(name: "boldText")
     internal static let lightGray = ColorAsset(name: "lightGray")
+    internal static let starYellow = ColorAsset(name: "starYellow")
+    internal static let subtitleText = ColorAsset(name: "subtitleText")
     internal static let white = ColorAsset(name: "white")
   }
 }
