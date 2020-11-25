@@ -8,7 +8,6 @@
 import Foundation
 
 final class NetworkManager {
-
     /// Builds the relevant URL components from the values specified in the API
     fileprivate class func buildURL(endpoint: API) -> URLComponents {
         var components = URLComponents()
