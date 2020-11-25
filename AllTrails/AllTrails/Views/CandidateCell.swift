@@ -48,6 +48,8 @@ class CandidateCell: UITableViewCell {
 
     @IBAction func didPressFavorite(_ sender: UIButton) {
         favoriteButton.isSelected = !favoriteButton.isSelected
+
+        //swiftlint:disable:next line_length
         let image = favoriteButton.isSelected ? Asset.Assets.favoriteUnselected.image : Asset.Assets.favoriteSelected.image
         favoriteButton.setImage(image, for: .normal)
     }
@@ -58,31 +60,34 @@ class CandidateCell: UITableViewCell {
         }
 
         placeNameLabel.text = place.name
-        generateSupportingText(place)
 
-        for index in 0..<Int(place.rating.rounded()) {
-            starStackView.arrangedSubviews[index].tintColor = Asset.Colors.starYellow.color
-        }
-
-        //starStackView.arrangedSubviews[0].tintColor = UIColor(named: "starYellow")
-        ratingCountLabel.text = "(\(place.userRatingsTotal))"
+        setupSupportingText(place)
+        setupRatingView(place)
     }
 
-    fileprivate func generateSupportingText(_ place: Place) {
+    fileprivate func setupSupportingText(_ place: Place) {
         var supportingText = String()
 
         if let priceLevel = place.priceLevel {
             supportingText += String(repeating: "$", count: priceLevel)
+        }
 
-            if let isOpenNow = place.openingHours?.openNow {
-                let currentStatus = (isOpenNow ? L10n.candidateRestaurantOpen : L10n.candidateRestaurantClosed)
-                supportingText += L10n.bulletPoint + currentStatus
+        if let isOpenNow = place.openingHours?.openNow {
+            if place.priceLevel != nil {
+                supportingText += L10n.bulletPoint
             }
 
-        } else if let isOpenNow = place.openingHours?.openNow {
-            supportingText += isOpenNow ? L10n.candidateRestaurantOpen : L10n.candidateRestaurantClosed
+            let currentStatus = (isOpenNow ? L10n.candidateRestaurantOpen : L10n.candidateRestaurantClosed)
+            supportingText += currentStatus
         }
 
         supportingTextLabel.text = supportingText
+    }
+
+    fileprivate func setupRatingView(_ place: Place) {
+        for index in 0..<Int(place.rating.rounded()) {
+            starStackView.arrangedSubviews[index].tintColor = Asset.Colors.starYellow.color
+        }
+        ratingCountLabel.text = "(\(place.userRatingsTotal))"
     }
 }
