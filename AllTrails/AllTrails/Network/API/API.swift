@@ -7,8 +7,8 @@
 
 import Foundation
 
-/// The API protocol allows us to seperate the task of constructing a URL and it's associated parameters and HTTP method from the act of executing the URL request
-/// and parsing the response
+/// The API protocol allows us to seperate the task of constructing a URL and it's associated parameters
+/// and HTTP method from the act of executing the URL request and parsing the response
 protocol API {
     /// .http  or .https
     var scheme: HTTPScheme { get }

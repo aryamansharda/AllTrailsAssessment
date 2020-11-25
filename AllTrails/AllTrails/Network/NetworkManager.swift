@@ -43,7 +43,9 @@ final class NetworkManager {
             if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
                 completion(.success(responseObject))
             } else {
-                let error = NSError(domain: "com.AllTrails", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
+                let error = NSError(domain: "com.AllTrails",
+                                    code: 200,
+                                    userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
                 completion(.failure(error))
             }
         }
