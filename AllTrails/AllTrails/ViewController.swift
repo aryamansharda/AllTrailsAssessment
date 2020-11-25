@@ -9,11 +9,11 @@ import UIKit
 
 /// For testing purposes, this allows us to easily substitute in a mock API that returns a hard-coded set of places
 protocol MainVCInteractor {
-    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse , Error>) -> ())
+    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse, Error>) -> Void)
 }
 
 final class MainVCDefaultInteractor: MainVCInteractor {
-    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse , Error>) -> ()) {
+    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse, Error>) -> Void) {
         let endpoint = GooglePlacesAPI.getPlacesResults(searchText: "burgers")
         NetworkManager.request(endpoint: endpoint) { (result: Result<GooglePlacesResponse, Error>) in
             completion(result)
@@ -22,7 +22,7 @@ final class MainVCDefaultInteractor: MainVCInteractor {
 }
 
 final class MainVCTestInteractor: MainVCInteractor {
-    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse , Error>) -> ()) {
+    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse, Error>) -> Void) {
 //        completion(.success("Test Places"))
     }
 }
@@ -57,4 +57,3 @@ class MainViewController: UIViewController {
         }
     }
 }
-

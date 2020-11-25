@@ -22,7 +22,7 @@ final class NetworkManager {
     /// - Parameters:
     ///   - endpoint: the endpoint to make the HTTP request against
     ///   - completion: the JSON response converted to the provided Codable object, if successful, or failure otherwise
-    class func request<T: Decodable>(endpoint: API, completion: @escaping (Result<T , Error>) -> ()) {
+    class func request<T: Decodable>(endpoint: API, completion: @escaping (Result<T, Error>) -> Void) {
         let components = buildURL(endpoint: endpoint)
 
         guard let url = components.url else { return }
@@ -43,7 +43,7 @@ final class NetworkManager {
             if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
                 completion(.success(responseObject))
             } else {
-                let error = NSError(domain:"com.AllTrails", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
+                let error = NSError(domain: "com.AllTrails", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
                 completion(.failure(error))
             }
         }
