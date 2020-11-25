@@ -26,6 +26,8 @@
 		C16DC717256DF3D7004F27CE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC716256DF3D7004F27CE /* NetworkManager.swift */; };
 		C16DC71C256DF3E8004F27CE /* GooglePlacesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC71B256DF3E8004F27CE /* GooglePlacesAPI.swift */; };
 		C1A6BF4F256E34770098F6B3 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6BF4E256E34770098F6B3 /* Assets.swift */; };
+		C1A6BF56256E3A920098F6B3 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A6BF54256E3A920098F6B3 /* ProximaNova-Regular.otf */; };
+		C1A6BF57256E3A920098F6B3 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A6BF55256E3A920098F6B3 /* Proxima Nova Bold.otf */; };
 		C1DDEE1C256E022D00F861DC /* GooglePlacesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE1B256E022D00F861DC /* GooglePlacesResponse.swift */; };
 		C1DDEE2C256E1C8700F861DC /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE29256E1C8700F861DC /* Storyboard.swift */; };
 		C1DDEE2D256E1C8700F861DC /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE2A256E1C8700F861DC /* L10n.swift */; };
@@ -77,6 +79,8 @@
 		C16DC716256DF3D7004F27CE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C16DC71B256DF3E8004F27CE /* GooglePlacesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesAPI.swift; sourceTree = "<group>"; };
 		C1A6BF4E256E34770098F6B3 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		C1A6BF54256E3A920098F6B3 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
+		C1A6BF55256E3A920098F6B3 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Bold.otf"; sourceTree = "<group>"; };
 		C1DDEE1B256E022D00F861DC /* GooglePlacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesResponse.swift; sourceTree = "<group>"; };
 		C1DDEE29256E1C8700F861DC /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		C1DDEE2A256E1C8700F861DC /* L10n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 		C16DC6CA256DF325004F27CE /* AllTrails */ = {
 			isa = PBXGroup;
 			children = (
+				C1A6BF53256E3A850098F6B3 /* Supporting Files */,
 				C1DDEE28256E1C7300F861DC /* Resources */,
 				C16DC6CB256DF325004F27CE /* AppDelegate.swift */,
 				C16DC6CD256DF325004F27CE /* SceneDelegate.swift */,
@@ -240,6 +245,15 @@
 				C16DC71B256DF3E8004F27CE /* GooglePlacesAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		C1A6BF53256E3A850098F6B3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C1A6BF55256E3A920098F6B3 /* Proxima Nova Bold.otf */,
+				C1A6BF54256E3A920098F6B3 /* ProximaNova-Regular.otf */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C1DDEE28256E1C7300F861DC /* Resources */ = {
@@ -361,7 +375,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C16DC6D8256DF327004F27CE /* LaunchScreen.storyboard in Resources */,
+				C1A6BF56256E3A920098F6B3 /* ProximaNova-Regular.otf in Resources */,
 				C1DDEE3B256E1CD500F861DC /* Colors.xcassets in Resources */,
+				C1A6BF57256E3A920098F6B3 /* Proxima Nova Bold.otf in Resources */,
 				C16DC6D5256DF327004F27CE /* Assets.xcassets in Resources */,
 				C16DC6D3256DF325004F27CE /* Main.storyboard in Resources */,
 			);

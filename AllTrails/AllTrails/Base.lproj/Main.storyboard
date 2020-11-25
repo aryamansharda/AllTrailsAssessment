@@ -60,26 +60,26 @@
                                                                 <constraint firstAttribute="height" constant="20" id="bzb-cA-vVe"/>
                                                                 <constraint firstAttribute="width" constant="22" id="fCj-r0-SAL"/>
                                                             </constraints>
-                                                            <state key="normal" image="heart" catalog="system"/>
+                                                            <state key="normal" image="favoriteUnselected"/>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="u5f-oW-pZg">
                                                             <rect key="frame" x="82" y="8" width="238" height="74"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lP0-5p-9KF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="24.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="25"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJV-dd-Kgk">
-                                                                    <rect key="frame" x="0.0" y="24.5" width="238" height="25"/>
+                                                                    <rect key="frame" x="0.0" y="25" width="238" height="24.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="how-YA-one">
                                                                     <rect key="frame" x="0.0" y="49.5" width="238" height="24.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -154,7 +154,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="favoriteUnselected" width="22" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
