@@ -27,7 +27,7 @@ final class MainVCTestInteractor: MainVCInteractor {
     }
 }
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     fileprivate var interactor: MainVCInteractor = MainVCDefaultInteractor()
 

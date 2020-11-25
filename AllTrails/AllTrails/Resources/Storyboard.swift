@@ -20,7 +20,7 @@ internal enum StoryboardScene {
   internal enum Main: StoryboardType {
     internal static let storyboardName = "Main"
 
-    internal static let initialScene = InitialSceneType<AllTrails.MainViewController>(storyboard: Main.self)
+    internal static let initialScene = InitialSceneType<AllTrails.CandidateListViewController>(storyboard: Main.self)
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
