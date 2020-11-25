@@ -6,7 +6,7 @@ target 'AllTrails' do
   use_frameworks!
 
   # Pods for AllTrails
-  pod 'SwiftGen', '~> 6.0'
+  pod 'SwiftGen'
 
   target 'AllTrailsTests' do
     inherit! :search_paths
