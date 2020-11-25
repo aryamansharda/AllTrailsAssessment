@@ -28,7 +28,7 @@
 		C1A6BF4F256E34770098F6B3 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6BF4E256E34770098F6B3 /* Assets.swift */; };
 		C1A6BF56256E3A920098F6B3 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A6BF54256E3A920098F6B3 /* ProximaNova-Regular.otf */; };
 		C1A6BF57256E3A920098F6B3 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C1A6BF55256E3A920098F6B3 /* Proxima Nova Bold.otf */; };
-		C1DDEE1C256E022D00F861DC /* GooglePlacesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE1B256E022D00F861DC /* GooglePlacesResponse.swift */; };
+		C1DDEE1C256E022D00F861DC /* NearbyPlacesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE1B256E022D00F861DC /* NearbyPlacesResponse.swift */; };
 		C1DDEE2C256E1C8700F861DC /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE29256E1C8700F861DC /* Storyboard.swift */; };
 		C1DDEE2D256E1C8700F861DC /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE2A256E1C8700F861DC /* L10n.swift */; };
 		C1DDEE3B256E1CD500F861DC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1DDEE3A256E1CD500F861DC /* Colors.xcassets */; };
@@ -81,7 +81,7 @@
 		C1A6BF4E256E34770098F6B3 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		C1A6BF54256E3A920098F6B3 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		C1A6BF55256E3A920098F6B3 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Bold.otf"; sourceTree = "<group>"; };
-		C1DDEE1B256E022D00F861DC /* GooglePlacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesResponse.swift; sourceTree = "<group>"; };
+		C1DDEE1B256E022D00F861DC /* NearbyPlacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlacesResponse.swift; sourceTree = "<group>"; };
 		C1DDEE29256E1C8700F861DC /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		C1DDEE2A256E1C8700F861DC /* L10n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
 		C1DDEE3A256E1CD500F861DC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		C16DC6FE256DF33E004F27CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C1DDEE1B256E022D00F861DC /* GooglePlacesResponse.swift */,
+				C1DDEE1B256E022D00F861DC /* NearbyPlacesResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -511,7 +511,7 @@
 			files = (
 				C16DC712256DF3C9004F27CE /* API.swift in Sources */,
 				C1DDEE2C256E1C8700F861DC /* Storyboard.swift in Sources */,
-				C1DDEE1C256E022D00F861DC /* GooglePlacesResponse.swift in Sources */,
+				C1DDEE1C256E022D00F861DC /* NearbyPlacesResponse.swift in Sources */,
 				C16DC70C256DF398004F27CE /* UIImageView+RemoteImageURL.swift in Sources */,
 				C16DC71C256DF3E8004F27CE /* GooglePlacesAPI.swift in Sources */,
 				C16DC70D256DF398004F27CE /* UIView+AutoLayout.swift in Sources */,

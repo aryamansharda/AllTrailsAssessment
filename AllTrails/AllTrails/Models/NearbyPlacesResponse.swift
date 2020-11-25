@@ -1,5 +1,5 @@
 //
-//  GooglePlacesResponse.swift
+//  NearbyPlacesResponse.swift
 //  AllTrails
 //
 //  Created by Aryaman Sharda on 11/24/20.
@@ -7,44 +7,40 @@
 
 import Foundation
 
-// MARK: - GooglePlacesResponse
-struct GooglePlacesResponse: Decodable {
-    let candidates: [Candidate]
-    let status: String
+// MARK: - NearbyPlacesResponse
+struct NearbyPlacesResponse: Decodable {
+    let results: [Place]
 }
 
-// MARK: - Candidate
-struct Candidate: Decodable {
-    let formattedAddress: String
+// MARK: - Result
+struct Place: Decodable {
     let geometry: Geometry
     let icon: String
+    let id: String?
     let name: String
     let openingHours: OpeningHours?
     let photos: [Photo]
-    let rating: Double
+    let placeID, reference: String
+    let types: [String]
+    let vicinity: String
 
     enum CodingKeys: String, CodingKey {
-        case formattedAddress = "formatted_address"
-        case geometry, icon, name
+        case geometry, icon, id, name
         case openingHours = "opening_hours"
-        case photos, rating
+        case photos
+        case placeID = "place_id"
+        case reference, types, vicinity
     }
 }
 
 // MARK: - Geometry
 struct Geometry: Decodable {
     let location: Location
-//    let viewport: Viewport
 }
 
 // MARK: - Location
 struct Location: Decodable {
     let lat, lng: Double
-}
-
-// MARK: - Viewport
-struct Viewport: Decodable {
-    let northeast, southwest: Location
 }
 
 // MARK: - OpeningHours
@@ -59,13 +55,11 @@ struct OpeningHours: Decodable {
 // MARK: - Photo
 struct Photo: Decodable {
     let height: Int
-    let htmlAttributions: [String]
     let photoReference: String
     let width: Int
 
     enum CodingKeys: String, CodingKey {
         case height
-        case htmlAttributions = "html_attributions"
         case photoReference = "photo_reference"
         case width
     }

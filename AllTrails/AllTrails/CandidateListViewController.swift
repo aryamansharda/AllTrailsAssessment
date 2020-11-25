@@ -11,11 +11,25 @@ import UIKit
 final class CandidateListViewController: UIViewController {
     @IBOutlet fileprivate(set) var tableView: UITableView!
 
+    private var dataSource = [Place]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
         tableView.backgroundColor = Asset.Colors.background.color
+
+        NetworkManager.request(endpoint: GooglePlacesAPI.getNearbyPlaces(searchText: "Burger")) { [weak self] (result: Result<NearbyPlacesResponse, Error>) in
+            switch result {
+            case .success(let response):
+                self?.dataSource = response.results
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure:
+                print("Failure")
+            }
+        }
     }
 }
 
@@ -25,16 +39,16 @@ extension CandidateListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return dataSource.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // TODO: Ensure that force unwrapping is the call hre
+        // TODO: Ensure that force unwrapping is the call here
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CandidateCell",
                                                        for: indexPath) as? CandidateCell else {
             return UITableViewCell()
         }
-        cell.configure(candidate: Candidate.fakeCandidate)
+        cell.configure(place: dataSource[indexPath.row])
         return cell
     }
 }
@@ -65,22 +79,8 @@ class CandidateCell: UITableViewCell {
         contentView.backgroundColor = Asset.Colors.background.color
     }
 
-    // TODO: Shouldn't be optional
-    func configure(candidate: Candidate) {
-
-        placeNameLabel.text = candidate.name
-        thumbnailImageView.loadImageFromURL(urlString: candidate.icon)
-    }
-}
-
-extension Candidate {
-    static var fakeCandidate: Candidate {
-        Candidate(formattedAddress: "1390 Market Street",
-                  geometry: Geometry(location: Location(lat: 30, lng: 30)),
-                  icon: "https://images.unsplash.com/photo-1593642532871-8b12e02d091c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-                  name: "Restaurant 1",
-                  openingHours: nil,
-                  photos: [],
-                  rating: 3.5)
+    func configure(place: Place) {
+        placeNameLabel.text = place.name
+        thumbnailImageView.loadImageFromURL(urlString: place.icon)
     }
 }

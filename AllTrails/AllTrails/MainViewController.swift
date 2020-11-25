@@ -9,20 +9,20 @@ import UIKit
 
 /// For testing purposes, this allows us to easily substitute in a mock API that returns a hard-coded set of places
 protocol MainVCInteractor {
-    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse, Error>) -> Void)
+    func fetchPlaces(completion: @escaping (Result<NearbyPlacesResponse, Error>) -> Void)
 }
 
 final class MainVCDefaultInteractor: MainVCInteractor {
-    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse, Error>) -> Void) {
-        let endpoint = GooglePlacesAPI.getPlacesResults(searchText: "burgers")
-        NetworkManager.request(endpoint: endpoint) { (result: Result<GooglePlacesResponse, Error>) in
+    func fetchPlaces(completion: @escaping (Result<NearbyPlacesResponse, Error>) -> Void) {
+        let endpoint = GooglePlacesAPI.getNearbyPlaces(searchText: "burgers")
+        NetworkManager.request(endpoint: endpoint) { (result: Result<NearbyPlacesResponse, Error>) in
             completion(result)
         }
     }
 }
 
 final class MainVCTestInteractor: MainVCInteractor {
-    func fetchPlaces(completion: @escaping (Result<GooglePlacesResponse, Error>) -> Void) {
+    func fetchPlaces(completion: @escaping (Result<NearbyPlacesResponse, Error>) -> Void) {
 //        completion(.success("Test Places"))
     }
 }

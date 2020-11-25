@@ -8,26 +8,26 @@
 import Foundation
 
 enum GooglePlacesAPI: API {
-    case getPlacesResults(searchText: String)
+    case getNearbyPlaces(searchText: String)
 
     var scheme: HTTPScheme {
         switch self {
-        case .getPlacesResults:
+        case .getNearbyPlaces:
             return .https
         }
     }
 
     var baseURL: String {
         switch self {
-        case .getPlacesResults:
+        case .getNearbyPlaces:
             return "maps.googleapis.com"
         }
     }
 
     var path: String {
         switch self {
-        case .getPlacesResults:
-            return "/maps/api/place/findplacefromtext/json"
+        case .getNearbyPlaces:
+            return "/maps/api/place/nearbysearch/json"
         }
     }
 
@@ -35,21 +35,20 @@ enum GooglePlacesAPI: API {
         let apiKey = "AIzaSyDIKzjfQQCahwJ9yEr8gBU9TqJ3MvbPXyY"
 
         switch self {
-        case .getPlacesResults(let query):
+        case .getNearbyPlaces(let query):
             return [
-                URLQueryItem(name: "fields", value: "photos,formatted_address,name,rating,opening_hours,geometry,icon"),
                 URLQueryItem(name: "key", value: apiKey),
-                URLQueryItem(name: "input", value: query),
-                URLQueryItem(name: "inputtype", value: "textquery"),
-                URLQueryItem(name: "type", value: "restaurant"),
-                URLQueryItem(name: "language", value: Locale.current.languageCode)
+                URLQueryItem(name: "location", value: "37.773972, -122.431297"),
+                URLQueryItem(name: "keyword", value: /*query*/ "pizza"),
+                URLQueryItem(name: "language", value: Locale.current.languageCode),
+                URLQueryItem(name: "rankby", value: "distance"),
             ]
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .getPlacesResults:
+        case .getNearbyPlaces:
             return .get
         }
     }
