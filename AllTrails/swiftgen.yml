@@ -25,20 +25,11 @@
  xcassets:
    inputs:
      - AllTrails/Assets.xcassets     
+     - AllTrails/Colors.xcassets   
    outputs:
      - templateName: swift5
-       params:
-         enumName: Images
-       output: AllTrails/Resources/Images.swift
+       output: AllTrails/Resources/Assets.swift
 
- xcassets:
-   inputs:
-     - AllTrails/Colors.xcassets     
-   outputs:
-     - templateName: swift5
-       params:
-          enumName: Colors
-       output: AllTrails/Resources/Colors.swift
 ## Generate constants for your storyboards and XIBs.
 ##   This one generates 2 output files, one containing the storyboard scenes, and another for the segues.
 ##    (You can remove the segues entry if you don't use segues in your IB files).

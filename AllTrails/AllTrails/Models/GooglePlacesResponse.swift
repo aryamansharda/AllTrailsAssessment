@@ -34,7 +34,7 @@ struct Candidate: Decodable {
 // MARK: - Geometry
 struct Geometry: Decodable {
     let location: Location
-    let viewport: Viewport
+//    let viewport: Viewport
 }
 
 // MARK: - Location
