@@ -81,6 +81,10 @@ class CandidateCell: UITableViewCell {
             supportingText += currentStatus
         }
 
+        if supportingText.isEmpty {
+            
+        }
+
         supportingTextLabel.text = supportingText
     }
 
