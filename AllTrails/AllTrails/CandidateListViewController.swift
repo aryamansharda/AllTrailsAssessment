@@ -25,7 +25,6 @@ final class CandidateListVCDefaultInteractor: CandidateListVCInteractor {
     }
 }
 
-
 final class CandidateListViewController: UIViewController {
     @IBOutlet fileprivate(set) var tableView: UITableView!
 

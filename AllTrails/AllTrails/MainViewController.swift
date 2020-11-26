@@ -28,25 +28,88 @@ final class MainVCTestInteractor: MainVCInteractor {
 }
 
 final class MainViewController: UIViewController {
-
     fileprivate var interactor: MainVCInteractor = MainVCDefaultInteractor()
+    fileprivate var lunchMapVC: LunchMapViewController {
+        return StoryboardScene.Main.lunchMapViewController.instantiate()
+    }
+
+    fileprivate var candidateListVC: CandidateListViewController {
+        return StoryboardScene.Main.candidateListViewController.instantiate()
+    }
+
+    fileprivate enum DisplayState {
+        case map
+        case list
+    }
+
+    fileprivate var state: DisplayState = .map {
+        didSet {
+            updateToggleButton()
+        }
+    }
 
     // MARK: - Public
+    @IBOutlet fileprivate(set) var containerView: UIView!
+    @IBOutlet fileprivate(set) var toggleDisplayButton: UIButton!
+
     func injectDependencies(interactor: MainVCInteractor) {
         self.interactor = interactor
     }
 
     // MARK: - UIViewController
+    fileprivate func setupListView() {
+        candidateListVC.injectDependencies(interactor: CandidateListVCDefaultInteractor())
+        add(candidateListVC, to: containerView)
+    }
+
+    fileprivate func setupMapView() {
+//        add(lunchMapVC, to: containerView)
+    }
+
+    fileprivate func setupToggleButton() {
+        toggleDisplayButton.setTitleColor(Asset.Colors.white.color, for: .normal)
+        toggleDisplayButton.backgroundColor = Asset.Colors.buttonGreen.color
+        toggleDisplayButton.layer.masksToBounds = false
+        toggleDisplayButton.layer.shadowColor = Asset.Colors.shadow.color.cgColor
+        toggleDisplayButton.layer.shadowOpacity = 0.2
+        toggleDisplayButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        toggleDisplayButton.layer.shadowRadius = 4.0
+        toggleDisplayButton.layer.cornerRadius = 6.0
+        toggleDisplayButton.titleLabel?.font = TextStyle.bold.font
+        toggleDisplayButton.setTitleColor(Asset.Colors.white.color, for: .normal)
+
+        updateToggleButton()
+    }
+
+    fileprivate func updateToggleButton() {
+        UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            switch self.state {
+            case .map:
+                self.toggleDisplayButton.setTitle(L10n.listViewButton, for: .normal)
+                self.toggleDisplayButton.setImage(Asset.Assets.listButtonIcon.image, for: .normal)
+
+                self.candidateListVC.remove()
+                self.add(self.lunchMapVC, to: self.containerView)
+            case .list:
+                self.toggleDisplayButton.setTitle(L10n.mapViewButton, for: .normal)
+                self.toggleDisplayButton.setImage(Asset.Assets.mapButtonIcon.image, for: .normal)
+
+                self.lunchMapVC.remove()
+                self.add(self.candidateListVC, to: self.containerView)
+            }
+        }, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchRequiredData()
+
+        setupMapView()
+        setupListView()
+        setupToggleButton()
     }
 
     fileprivate func fetchRequiredData() {
-//        guard let interactor = interactor else {
-//            return
-//        }
-
         interactor.fetchPlaces { result in
             switch result {
             case .success(let places):
@@ -55,5 +118,10 @@ final class MainViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+
+    // TODO: Add mark for events
+    @IBAction func toggleButtonPressed(_ sender: UIButton) {
+        state = state == .list ? .map : .list
     }
 }

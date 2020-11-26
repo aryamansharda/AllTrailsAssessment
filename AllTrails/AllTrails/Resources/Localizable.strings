@@ -8,3 +8,5 @@
 "candidate_restaurant_open" = "Open";
 "candidate_restaurant_closed" = "Closed";
 "bullet_point" = " • ";
+"list_view_button" = "List";
+"map_view_button" = "Map";

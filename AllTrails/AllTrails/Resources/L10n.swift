@@ -16,6 +16,10 @@ internal enum L10n {
   internal static let candidateRestaurantClosed = L10n.tr("Localizable", "candidate_restaurant_closed")
   /// Open
   internal static let candidateRestaurantOpen = L10n.tr("Localizable", "candidate_restaurant_open")
+  /// List
+  internal static let listViewButton = L10n.tr("Localizable", "list_view_button")
+  /// Map
+  internal static let mapViewButton = L10n.tr("Localizable", "map_view_button")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

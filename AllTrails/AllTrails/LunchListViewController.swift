@@ -1,5 +1,5 @@
 //
-//  LunchListViewController.swift
+//  CandidateListViewController.swift
 //  AllTrails
 //
 //  Created by Aryaman Sharda on 11/24/20.
