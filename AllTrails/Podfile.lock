@@ -1,16 +1,24 @@
 PODS:
+  - GoogleMaps (4.0.0):
+    - GoogleMaps/Maps (= 4.0.0)
+  - GoogleMaps/Base (4.0.0)
+  - GoogleMaps/Maps (4.0.0):
+    - GoogleMaps/Base
   - SwiftGen (6.4.0)
 
 DEPENDENCIES:
+  - GoogleMaps (= 4.0.0)
   - SwiftGen
 
 SPEC REPOS:
   trunk:
+    - GoogleMaps
     - SwiftGen
 
 SPEC CHECKSUMS:
+  GoogleMaps: b7f7fc569a9b354a3af0d9729dbec40957b7d41e
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
 
-PODFILE CHECKSUM: 60e0de4fc0048c063f120f429b6521fda9759e32
+PODFILE CHECKSUM: 2f5bde506f577ddfec356800868117e28003a4c2
 
 COCOAPODS: 1.9.1

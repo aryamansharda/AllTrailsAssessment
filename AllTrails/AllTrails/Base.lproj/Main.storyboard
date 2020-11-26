@@ -156,17 +156,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aq9-h5-JG8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYo-em-Hme" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mS2-uH-h7n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="aq9-h5-JG8" secondAttribute="trailing" id="BQO-hB-ws7"/>
-                            <constraint firstAttribute="bottom" secondItem="aq9-h5-JG8" secondAttribute="bottom" id="Hyy-a1-oZ5"/>
-                            <constraint firstItem="aq9-h5-JG8" firstAttribute="top" secondItem="Mq4-Xm-nyg" secondAttribute="top" id="Qyj-kh-4R5"/>
-                            <constraint firstItem="aq9-h5-JG8" firstAttribute="leading" secondItem="Mq4-Xm-nyg" secondAttribute="leading" id="mER-oW-aj4"/>
+                            <constraint firstItem="HYo-em-Hme" firstAttribute="leading" secondItem="mS2-uH-h7n" secondAttribute="leading" id="D12-Ai-Nq1"/>
+                            <constraint firstItem="mS2-uH-h7n" firstAttribute="trailing" secondItem="HYo-em-Hme" secondAttribute="trailing" id="L3W-q9-JRB"/>
+                            <constraint firstItem="HYo-em-Hme" firstAttribute="top" secondItem="mS2-uH-h7n" secondAttribute="top" id="Us5-Yy-ioE"/>
+                            <constraint firstItem="mS2-uH-h7n" firstAttribute="bottom" secondItem="HYo-em-Hme" secondAttribute="bottom" id="fui-cx-xeB"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import MapKit
+import GoogleMaps
 
 class LunchMapViewController: UIViewController {
     override func viewDidLoad() {
