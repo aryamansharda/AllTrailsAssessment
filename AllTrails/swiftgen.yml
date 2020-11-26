@@ -16,6 +16,7 @@
  ib:
    inputs:
      - AllTrails/Base.lproj/
+     - AllTrails/Views/.
    outputs:
      - templateName: scenes-swift5
        output: AllTrails/Resources/Storyboard.swift

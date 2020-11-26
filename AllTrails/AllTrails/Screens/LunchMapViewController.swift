@@ -30,6 +30,7 @@ protocol LunchMapVCDelegate: AnyObject {
 class LunchMapViewController: UIViewController {
     @IBOutlet fileprivate(set) var mapView: GMSMapView!
 
+    fileprivate var infoWindow: LunchMarkerRestaurantView = LunchMarkerRestaurantView.fromNib()
     fileprivate var interactor: LunchMapVCInteractor = LunchMapVCDefaultInteractor()
     fileprivate var markers = [ATMapMarker]()
     fileprivate var dataSource = [Place]() {
@@ -41,10 +42,7 @@ class LunchMapViewController: UIViewController {
 
                 self.mapView.clear()
                 self.dataSource.forEach {
-                    let position = CLLocationCoordinate2D(latitude: $0.geometry.location.lat,
-                                                          longitude: $0.geometry.location.lng)
-                    let marker = ATMapMarker(position: position)
-                    marker.configure(title: $0.name, mapView: self.mapView)
+                    let marker = ATMapMarker(place: $0, mapView: self.mapView)
                     self.markers.append(marker)
                 }
 
@@ -53,8 +51,6 @@ class LunchMapViewController: UIViewController {
         }
     }
 
-    //Create a location manager?
-    
     weak var delegate: LunchMapVCDelegate?
 
     override func viewDidLoad() {
@@ -93,18 +89,44 @@ extension LunchMapViewController: GMSMapViewDelegate {
         mapView.selectedMarker?.icon = Asset.Assets.markerUnselected.image
         mapView.selectedMarker = marker
         marker.icon = Asset.Assets.markerSelected.image
-        return true
+
+        guard let mapMarker = marker as? ATMapMarker else {
+            return false
+        }
+
+        infoWindow.configure(place: mapMarker.place, photoURL: nil)
+        infoWindow.center = mapView.projection.point(for: mapMarker.position)
+        infoWindow.center.y -= 80
+        view.addSubview(infoWindow)
+
+        return false
     }
 
-    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        infoWindow.removeFromSuperview()
     }
+
+//    func mapView(_ mapView: GMSMapView, markerInfoContents marker: GMSMarker) -> UIView? {
+//
+//        let restaurantView: LunchMarkerRestaurantView = LunchMarkerRestaurantView.fromNib()
+//
+////        mapMarker.iconView = restaurantView
+//
+//        return nil
+//    }
 }
 
 final class ATMapMarker: GMSMarker {
-    func configure(title: String, mapView: GMSMapView) {
+    let place: Place
+
+    init(place: Place, mapView: GMSMapView) {
+        self.place = place
+        super.init()
+
         icon = Asset.Assets.markerUnselected.image
         map = mapView
         appearAnimation = .pop
+        position = CLLocationCoordinate2D(latitude: place.geometry.location.lat,
+                                          longitude: place.geometry.location.lng)
     }
 }

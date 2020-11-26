@@ -14,6 +14,10 @@
 		C130B71A25703F07002E773B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B71925703F07002E773B /* LocationService.swift */; };
 		C130B71F2570460B002E773B /* ATFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B71E2570460B002E773B /* ATFloatingButton.swift */; };
 		C130B724257046B1002E773B /* ATToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B723257046B1002E773B /* ATToggleButton.swift */; };
+		C130B7322570562B002E773B /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B7312570562B002E773B /* Log.swift */; };
+		C130B73725705906002E773B /* LunchMarkerRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B73625705906002E773B /* LunchMarkerRestaurantView.swift */; };
+		C130B73C25705910002E773B /* LunchMarkerRestaurantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C130B73B25705910002E773B /* LunchMarkerRestaurantView.xib */; };
+		C130B74525705BF7002E773B /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B74425705BF7002E773B /* UIView+NibLoadable.swift */; };
 		C16DC6CC256DF325004F27CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CB256DF325004F27CE /* AppDelegate.swift */; };
 		C16DC6CE256DF325004F27CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CD256DF325004F27CE /* SceneDelegate.swift */; };
 		C16DC6D0256DF325004F27CE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CF256DF325004F27CE /* MainViewController.swift */; };
@@ -71,6 +75,10 @@
 		C130B71925703F07002E773B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		C130B71E2570460B002E773B /* ATFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATFloatingButton.swift; sourceTree = "<group>"; };
 		C130B723257046B1002E773B /* ATToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATToggleButton.swift; sourceTree = "<group>"; };
+		C130B7312570562B002E773B /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		C130B73625705906002E773B /* LunchMarkerRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchMarkerRestaurantView.swift; sourceTree = "<group>"; };
+		C130B73B25705910002E773B /* LunchMarkerRestaurantView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LunchMarkerRestaurantView.xib; sourceTree = "<group>"; };
+		C130B74425705BF7002E773B /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		C16DC6C8256DF325004F27CE /* AllTrails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllTrails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C16DC6CB256DF325004F27CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C16DC6CD256DF325004F27CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +188,23 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		C130B73025705623002E773B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C130B7312570562B002E773B /* Log.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C130B74025705915002E773B /* Lunch Marker Restaurant View */ = {
+			isa = PBXGroup;
+			children = (
+				C130B73625705906002E773B /* LunchMarkerRestaurantView.swift */,
+				C130B73B25705910002E773B /* LunchMarkerRestaurantView.xib */,
+			);
+			path = "Lunch Marker Restaurant View";
+			sourceTree = "<group>";
+		};
 		C16DC6BF256DF325004F27CE = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +233,7 @@
 				C1DDEE28256E1C7300F861DC /* Resources */,
 				C16DC6CB256DF325004F27CE /* AppDelegate.swift */,
 				C16DC6CD256DF325004F27CE /* SceneDelegate.swift */,
+				C130B73025705623002E773B /* Utils */,
 				C1A6C042256F3D570098F6B3 /* UI Components */,
 				C16DC700256DF34E004F27CE /* Extensions */,
 				C16DC6FF256DF348004F27CE /* Network */,
@@ -266,6 +292,7 @@
 				C16DC70B256DF398004F27CE /* UIView+AutoLayout.swift */,
 				C1A6C038256F228A0098F6B3 /* UIViewController+ChildViewController.swift */,
 				C1A6C048256F6D9F0098F6B3 /* UIView+Shadow.swift */,
+				C130B74425705BF7002E773B /* UIView+NibLoadable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				C1A6C030256EFB7E0098F6B3 /* CandidateCell.swift */,
+				C130B74025705915002E773B /* Lunch Marker Restaurant View */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -436,6 +464,7 @@
 				C1A6C028256EF95C0098F6B3 /* Localizable.strings in Resources */,
 				C1A6BF57256E3A920098F6B3 /* ProximaNova-Bold.otf in Resources */,
 				C16DC6D5256DF327004F27CE /* Assets.xcassets in Resources */,
+				C130B73C25705910002E773B /* LunchMarkerRestaurantView.xib in Resources */,
 				C16DC6D3256DF325004F27CE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C130B74525705BF7002E773B /* UIView+NibLoadable.swift in Sources */,
 				C16DC712256DF3C9004F27CE /* API.swift in Sources */,
 				C1A6BFC4256ED1C20098F6B3 /* Fonts.swift in Sources */,
 				C1DDEE2C256E1C8700F861DC /* Storyboard.swift in Sources */,
@@ -614,6 +644,8 @@
 				C130B724257046B1002E773B /* ATToggleButton.swift in Sources */,
 				C12CF371256E254100FD4651 /* CandidateListViewController.swift in Sources */,
 				C16DC6D0256DF325004F27CE /* MainViewController.swift in Sources */,
+				C130B7322570562B002E773B /* Log.swift in Sources */,
+				C130B73725705906002E773B /* LunchMarkerRestaurantView.swift in Sources */,
 				C1A6C044256F3D650098F6B3 /* ATSearchBar.swift in Sources */,
 				C1A6BF4F256E34770098F6B3 /* Assets.swift in Sources */,
 				C1A6C031256EFB7E0098F6B3 /* CandidateCell.swift in Sources */,
