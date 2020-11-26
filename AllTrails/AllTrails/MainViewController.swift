@@ -55,6 +55,7 @@ final class MainViewController: UIViewController {
     @IBOutlet fileprivate(set) var toggleDisplayButton: UIButton!
     @IBOutlet fileprivate(set) var toggleFilterButton: UIButton!
     @IBOutlet fileprivate(set) var filterSectionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate(set) var searchBar: ATSearchBar!
 
     func injectDependencies(interactor: MainVCInteractor) {
         self.interactor = interactor

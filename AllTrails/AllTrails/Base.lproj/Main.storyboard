@@ -86,7 +86,7 @@
                                             <action selector="toggleFilterPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LFF-eq-kB1"/>
                                         </connections>
                                     </button>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="scy-YB-8Uz">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scy-YB-8Uz" customClass="ATSearchBar" customModule="AllTrails" customModuleProvider="target">
                                         <rect key="frame" x="84" y="46" width="306" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
@@ -129,6 +129,7 @@
                         <outlet property="containerView" destination="BeC-Aw-9BC" id="fsq-lU-jhr"/>
                         <outlet property="filterSectionHeightConstraint" destination="R30-A2-HVh" id="NMJ-yk-a1e"/>
                         <outlet property="filtersContainerView" destination="95Z-T6-ooI" id="mrb-HP-DzO"/>
+                        <outlet property="searchBar" destination="scy-YB-8Uz" id="CFu-cm-NL4"/>
                         <outlet property="searchContainerView" destination="Bkq-vZ-83I" id="RKf-KR-mdy"/>
                         <outlet property="toggleDisplayButton" destination="55x-Oa-99j" id="Se9-wK-y1k"/>
                         <outlet property="toggleFilterButton" destination="fOF-sO-zDC" id="CTQ-z8-NUG"/>
