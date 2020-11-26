@@ -9,13 +9,10 @@ import Foundation
 import UIKit
 
 protocol CandidateListVCInteractor {
-//    var dataSource: [Place] { get set }
     func generatePhotoURL(place: Place) -> String?
 }
 
 final class CandidateListVCDefaultInteractor: CandidateListVCInteractor {
-//    var dataSource = [Place]()
-
     func generatePhotoURL(place: Place) -> String? {
         guard let photoReference = place.photos?.first?.photoReference else {
             return nil
@@ -52,6 +49,7 @@ final class CandidateListViewController: UIViewController {
         self.dataSource = places
     }
 
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,18 +57,6 @@ final class CandidateListViewController: UIViewController {
         tableView.delegate = self
         tableView.backgroundColor = Asset.Colors.background.color
         view.backgroundColor = Asset.Colors.background.color
-
-//        NetworkManager.request(endpoint: GooglePlacesAPI.getNearbyPlaces(searchText: "Burger")) { [weak self] (result: Result<NearbyPlacesResponse, Error>) in
-//            switch result {
-//            case .success(let response):
-//                self?.dataSource = response.results
-//                DispatchQueue.main.async {
-//                    self?.tableView.reloadData()
-//                }
-//            case .failure:
-//                print("Failure")
-//            }
-//        }
     }
 }
 

@@ -201,21 +201,21 @@ final class MainViewController: UIViewController {
     }
 
     // TODO: Add mark for events
-    @IBAction func toggleButtonPressed(_ sender: UIButton) {
+    @IBAction fileprivate func toggleButtonPressed(_ sender: UIButton) {
         state = state == .list ? .map : .list
     }
 
-    @IBAction func filterOpenNowPressed(_ sender: UIButton) {
+    @IBAction fileprivate func filterOpenNowPressed(_ sender: UIButton) {
         openNowButton.isSelected = !openNowButton.isSelected
         openNowButton.backgroundColor = openNowButton.isSelected ? Asset.Colors.buttonGreen.color : Asset.Colors.lightGray.color
         filterPlaces()
     }
 
-    @IBAction func priceTierValueChanged(_ sender: UISegmentedControl) {
+    @IBAction fileprivate func priceTierValueChanged(_ sender: UISegmentedControl) {
         filterPlaces()
     }
 
-    @IBAction func toggleFilterPressed(_ sender: UIButton) {
+    @IBAction fileprivate func toggleFilterPressed(_ sender: UIButton) {
         if filtersContainerView.isHidden {
             self.filtersContainerView.isHidden = false
 

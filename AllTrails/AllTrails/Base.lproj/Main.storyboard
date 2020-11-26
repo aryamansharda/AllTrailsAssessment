@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -157,19 +158,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYo-em-Hme" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mS2-uH-h7n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HYo-em-Hme" firstAttribute="leading" secondItem="mS2-uH-h7n" secondAttribute="leading" id="D12-Ai-Nq1"/>
-                            <constraint firstItem="mS2-uH-h7n" firstAttribute="trailing" secondItem="HYo-em-Hme" secondAttribute="trailing" id="L3W-q9-JRB"/>
-                            <constraint firstItem="HYo-em-Hme" firstAttribute="top" secondItem="mS2-uH-h7n" secondAttribute="top" id="Us5-Yy-ioE"/>
-                            <constraint firstItem="mS2-uH-h7n" firstAttribute="bottom" secondItem="HYo-em-Hme" secondAttribute="bottom" id="fui-cx-xeB"/>
+                            <constraint firstItem="HYo-em-Hme" firstAttribute="leading" secondItem="Mq4-Xm-nyg" secondAttribute="leading" id="D12-Ai-Nq1"/>
+                            <constraint firstAttribute="trailing" secondItem="HYo-em-Hme" secondAttribute="trailing" id="L3W-q9-JRB"/>
+                            <constraint firstItem="HYo-em-Hme" firstAttribute="top" secondItem="Mq4-Xm-nyg" secondAttribute="top" id="Us5-Yy-ioE"/>
+                            <constraint firstAttribute="bottom" secondItem="HYo-em-Hme" secondAttribute="bottom" id="fui-cx-xeB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="HYo-em-Hme" id="WCV-Ti-qZH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JVi-o3-QUX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
