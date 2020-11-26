@@ -8,7 +8,7 @@
 import Foundation
 
 enum GooglePlacesAPI: API {
-    case getNearbyPlaces(searchText: String)
+    case getNearbyPlaces(searchText: String?)
 
     var scheme: HTTPScheme {
         switch self {
@@ -34,15 +34,19 @@ enum GooglePlacesAPI: API {
     var parameters: [URLQueryItem] {
         switch self {
         case .getNearbyPlaces(let query):
-            print(query)
-            return [
+            var params = [
                 URLQueryItem(name: "key", value: GooglePlacesAPI.key),
                 URLQueryItem(name: "location", value: "37.773972, -122.431297"),
-//                URLQueryItem(name: "keyword", value: "pizza"),
                 URLQueryItem(name: "language", value: Locale.current.languageCode),
                 URLQueryItem(name: "rankby", value: "distance"),
                 URLQueryItem(name: "type", value: "restaurant")
             ]
+
+            if let query = query {
+                params.append(URLQueryItem(name: "keyword", value: query))
+            }
+
+            return params
         }
     }
 

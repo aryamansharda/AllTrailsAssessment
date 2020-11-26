@@ -18,7 +18,7 @@ struct Place: Decodable {
     let icon: String
     let name: String
     let openingHours: OpeningHours?
-    let photos: [Photo]
+    let photos: [Photo]?
     let priceLevel: Int?
     let rating: Double
     let placeID, reference: String

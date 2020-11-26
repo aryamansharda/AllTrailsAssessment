@@ -9,42 +9,63 @@ import UIKit
 
 /// For testing purposes, this allows us to easily substitute in a mock API that returns a hard-coded set of places
 protocol MainVCInteractor {
+    var dataSource: [Place] { get set }
+
     func openPlaceInMaps(place: Place)
-    func fetchPlaces(completion: @escaping (Result<NearbyPlacesResponse, Error>) -> Void)
+    func fetchPlaces(query: String?, completion: @escaping (Result<[Place], Error>) -> Void)
+    func filterResults(isOpen: Bool?, pricingTier: Int?) -> [Place]
 }
 
 final class MainVCDefaultInteractor: MainVCInteractor {
+    var dataSource = [Place]()
+
     func openPlaceInMaps(place: Place) {
-        if let url = URL(string: "http://maps.apple.com/?address=\(place.vicinity)") {
+        if let encodedAddress = place.vicinity.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+           let url = URL(string: "http://maps.apple.com/?address=\(encodedAddress)") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 
-    func fetchPlaces(completion: @escaping (Result<NearbyPlacesResponse, Error>) -> Void) {
-        let endpoint = GooglePlacesAPI.getNearbyPlaces(searchText: "burgers")
+    func filterResults(isOpen: Bool?, pricingTier: Int?) -> [Place] {
+        var filteredResults = dataSource
+
+        if let pricingTier = pricingTier {
+            filteredResults = filteredResults.filter { $0.priceLevel == pricingTier }
+        }
+
+        if let isOpen = isOpen {
+            filteredResults = filteredResults.filter { $0.openingHours?.openNow == isOpen }
+        }
+
+        return filteredResults
+    }
+
+    func fetchPlaces(query: String?, completion: @escaping (Result<[Place], Error>) -> Void) {
+        let endpoint = GooglePlacesAPI.getNearbyPlaces(searchText: query)
         NetworkManager.request(endpoint: endpoint) { (result: Result<NearbyPlacesResponse, Error>) in
-            completion(result)
+            switch result {
+            case .success(let response):
+                self.dataSource = response.results.filter { $0.priceLevel != nil && $0.openingHours != nil }
+                completion(.success(self.dataSource))
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(.failure(error))
+            }
         }
     }
 }
 
 final class MainViewController: UIViewController {
     fileprivate var interactor: MainVCInteractor = MainVCDefaultInteractor()
-    
-    fileprivate var lunchMapVC: LunchMapViewController {
-        return StoryboardScene.Main.lunchMapViewController.instantiate()
-    }
-
-    fileprivate var candidateListVC: CandidateListViewController {
-        return StoryboardScene.Main.candidateListViewController.instantiate()
-    }
+    fileprivate var lunchMapVC: LunchMapViewController = StoryboardScene.Main.lunchMapViewController.instantiate()
+    fileprivate var candidateListVC: CandidateListViewController = StoryboardScene.Main.candidateListViewController.instantiate()
 
     fileprivate enum DisplayState {
         case map
         case list
     }
 
-    fileprivate var state: DisplayState = .map {
+    fileprivate var state: DisplayState = .list {
         didSet {
             updateToggleButton()
         }
@@ -56,8 +77,10 @@ final class MainViewController: UIViewController {
     @IBOutlet fileprivate(set) var filtersContainerView: UIView!
     @IBOutlet fileprivate(set) var toggleDisplayButton: UIButton!
     @IBOutlet fileprivate(set) var toggleFilterButton: UIButton!
+    @IBOutlet fileprivate(set) var openNowButton: UIButton!
     @IBOutlet fileprivate(set) var filterSectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate(set) var searchBar: ATSearchBar!
+    @IBOutlet fileprivate(set) var priceSegmentedControl: UISegmentedControl!
 
     func injectDependencies(interactor: MainVCInteractor) {
         self.interactor = interactor
@@ -66,11 +89,12 @@ final class MainViewController: UIViewController {
     // MARK: - UIViewController
     fileprivate func setupListView() {
         candidateListVC.injectDependencies(interactor: CandidateListVCDefaultInteractor())
+        candidateListVC.delegate = self
         add(candidateListVC, to: containerView)
     }
 
     fileprivate func setupMapView() {
-//        add(lunchMapVC, to: containerView)
+
     }
 
     fileprivate func setupFilterSection() {
@@ -81,9 +105,23 @@ final class MainViewController: UIViewController {
         toggleFilterButton.titleLabel?.font = TextStyle.subtitle.font
         toggleFilterButton.setTitleColor(Asset.Colors.boldText.color, for: .normal)
 
+        filtersContainerView.backgroundColor = .systemGroupedBackground
+        filtersContainerView.layer.cornerRadius = 6
+        filtersContainerView.clipsToBounds = true
         filtersContainerView.isHidden = true
         filtersContainerView.alpha = 0
         filterSectionHeightConstraint.constant = 0
+
+        openNowButton.layer.cornerRadius = 6
+        openNowButton.layer.borderWidth = 1
+        openNowButton.layer.borderColor = Asset.Colors.lightGray.color.cgColor
+        openNowButton.setTitle(L10n.filterOpenNow, for: .normal)
+        openNowButton.titleLabel?.font = TextStyle.subtitle.font
+        openNowButton.setTitleColor(Asset.Colors.boldText.color, for: .normal)
+        openNowButton.setTitleColor(Asset.Colors.white.color, for: .selected)
+
+        let font: [NSAttributedString.Key: Any] = [.font: TextStyle.subtitle.font]
+        priceSegmentedControl.setTitleTextAttributes(font, for: .normal)
         view.layoutIfNeeded()
     }
 
@@ -92,6 +130,7 @@ final class MainViewController: UIViewController {
         searchContainerView.layer.shadowOpacity = 0.05
         searchContainerView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         searchContainerView.layer.shadowRadius = 4.0
+        searchBar.delegate = self
     }
 
     fileprivate func setupToggleButton() {
@@ -139,20 +178,41 @@ final class MainViewController: UIViewController {
         setupSearchContainerView()
     }
 
-    fileprivate func fetchRequiredData() {
-        interactor.fetchPlaces { result in
+    fileprivate func searchForPlaces(with query: String? = nil) {
+        interactor.fetchPlaces(query: query) { [weak self] result in
             switch result {
             case .success(let places):
-                print(places)
+                self?.candidateListVC.updatePlaces(places: places)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
 
+    fileprivate func fetchRequiredData() {
+        searchForPlaces()
+    }
+
+    fileprivate func filterPlaces() {
+        let pricingTier = priceSegmentedControl.selectedSegmentIndex == priceSegmentedControl.numberOfSegments - 1 ? nil : priceSegmentedControl.selectedSegmentIndex + 1
+        let isOpen = openNowButton.isSelected ? true : nil
+        let filteredResults = interactor.filterResults(isOpen: isOpen, pricingTier: pricingTier)
+        candidateListVC.updatePlaces(places: filteredResults)
+    }
+
     // TODO: Add mark for events
     @IBAction func toggleButtonPressed(_ sender: UIButton) {
         state = state == .list ? .map : .list
+    }
+
+    @IBAction func filterOpenNowPressed(_ sender: UIButton) {
+        openNowButton.isSelected = !openNowButton.isSelected
+        openNowButton.backgroundColor = openNowButton.isSelected ? Asset.Colors.buttonGreen.color : Asset.Colors.lightGray.color
+        filterPlaces()
+    }
+
+    @IBAction func priceTierValueChanged(_ sender: UISegmentedControl) {
+        filterPlaces()
     }
 
     @IBAction func toggleFilterPressed(_ sender: UIButton) {
@@ -174,5 +234,24 @@ final class MainViewController: UIViewController {
             })
 
         }
+    }
+}
+
+extension MainViewController: CandidateListVCDelegate {
+    func candidateListVCDidSelectPlace(_ candidateListVC: CandidateListViewController, place: Place) {
+        interactor.openPlaceInMaps(place: place)
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let searchQuery = searchBar.text else {
+            // TODO:
+            print("Please enter a phrase")
+            return
+        }
+
+        searchForPlaces(with: searchQuery)
     }
 }

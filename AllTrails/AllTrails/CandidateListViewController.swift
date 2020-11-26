@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 protocol CandidateListVCInteractor {
-    var dataSource: [Place] { get set }
+//    var dataSource: [Place] { get set }
     func generatePhotoURL(place: Place) -> String?
 }
 
 final class CandidateListVCDefaultInteractor: CandidateListVCInteractor {
-    var dataSource = [Place]()
+//    var dataSource = [Place]()
 
     func generatePhotoURL(place: Place) -> String? {
-        guard let photoReference = place.photos.first?.photoReference else {
+        guard let photoReference = place.photos?.first?.photoReference else {
             return nil
         }
 
@@ -33,13 +33,23 @@ final class CandidateListViewController: UIViewController {
     @IBOutlet fileprivate(set) var tableView: UITableView!
 
     fileprivate var interactor: CandidateListVCInteractor = CandidateListVCDefaultInteractor()
-    fileprivate var dataSource = [Place]()
+    fileprivate var dataSource = [Place]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     weak var delegate: CandidateListVCDelegate?
 
     // MARK: - Public
     func injectDependencies(interactor: CandidateListVCInteractor) {
         self.interactor = interactor
+    }
+
+    func updatePlaces(places: [Place]) {
+        self.dataSource = places
     }
 
     override func viewDidLoad() {
@@ -50,17 +60,17 @@ final class CandidateListViewController: UIViewController {
         tableView.backgroundColor = Asset.Colors.background.color
         view.backgroundColor = Asset.Colors.background.color
 
-        NetworkManager.request(endpoint: GooglePlacesAPI.getNearbyPlaces(searchText: "Burger")) { [weak self] (result: Result<NearbyPlacesResponse, Error>) in
-            switch result {
-            case .success(let response):
-                self?.dataSource = response.results
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            case .failure:
-                print("Failure")
-            }
-        }
+//        NetworkManager.request(endpoint: GooglePlacesAPI.getNearbyPlaces(searchText: "Burger")) { [weak self] (result: Result<NearbyPlacesResponse, Error>) in
+//            switch result {
+//            case .success(let response):
+//                self?.dataSource = response.results
+//                DispatchQueue.main.async {
+//                    self?.tableView.reloadData()
+//                }
+//            case .failure:
+//                print("Failure")
+//            }
+//        }
     }
 }
 
@@ -87,5 +97,7 @@ extension CandidateListViewController: UITableViewDataSource {
 }
 
 extension CandidateListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.candidateListVCDidSelectPlace(self, place: dataSource[indexPath.row])
+    }
 }
