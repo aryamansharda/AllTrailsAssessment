@@ -56,7 +56,7 @@ struct Location: Decodable {
 
 // MARK: - OpeningHours
 struct OpeningHours: Decodable {
-    let openNow: Bool
+    let openNow: Bool?
 
     enum CodingKeys: String, CodingKey {
         case openNow = "open_now"

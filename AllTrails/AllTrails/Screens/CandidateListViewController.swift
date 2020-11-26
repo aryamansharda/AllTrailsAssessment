@@ -70,8 +70,7 @@ extension CandidateListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CandidateCell",
-                                                       for: indexPath) as? CandidateCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CandidateCell", for: indexPath) as? CandidateCell else {
             return UITableViewCell()
         }
 

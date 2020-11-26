@@ -43,9 +43,12 @@ final class MainVCDefaultInteractor: MainVCInteractor {
     }
 
     func fetchPlaces(query: String?, completion: @escaping (Result<[Place], Error>) -> Void) {
-        let endpoint = GooglePlacesAPI.getNearbyPlaces(searchText: query,
-                                                       latitude: lastKnownLocation?.latitude,
-                                                       longitude: lastKnownLocation?.longitude)
+        guard let latitude = lastKnownLocation?.latitude, let longitude = lastKnownLocation?.longitude else {
+            print("No location fix available.")
+            return
+        }
+
+        let endpoint = GooglePlacesAPI.getNearbyPlaces(searchText: query, latitude: latitude, longitude: longitude)
         NetworkManager.request(endpoint: endpoint) { (result: Result<NearbyPlacesResponse, Error>) in
             switch result {
             case .success(let response):
@@ -83,8 +86,8 @@ final class MainViewController: UIViewController {
     @IBOutlet fileprivate(set) var toggleDisplayButton: ATFloatingButton!
     @IBOutlet fileprivate(set) var toggleFilterButton: ATToggleButton!
     @IBOutlet fileprivate(set) var openNowButton: ATToggleButton!
-    @IBOutlet fileprivate(set) var filterSectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate(set) var searchBar: ATSearchBar!
+    @IBOutlet fileprivate(set) var filterSectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate(set) var priceSegmentedControl: UISegmentedControl!
 
     func injectDependencies(interactor: MainVCInteractor) {
@@ -116,7 +119,6 @@ final class MainViewController: UIViewController {
 
         let font: [NSAttributedString.Key: Any] = [.font: TextStyle.subtitle.font]
         priceSegmentedControl.setTitleTextAttributes(font, for: .normal)
-        view.layoutIfNeeded()
     }
 
     fileprivate func setupSearchContainerView() {
@@ -127,45 +129,35 @@ final class MainViewController: UIViewController {
         searchBar.delegate = self
     }
 
-    fileprivate func setupToggleButton() {
-        updateToggleButton()
-    }
-
     fileprivate func updateToggleButton() {
         UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
             switch self.state {
             case .map:
                 self.toggleDisplayButton.setTitle(L10n.listViewButton, for: .normal)
                 self.toggleDisplayButton.setImage(Asset.Assets.listButtonIcon.image, for: .normal)
-
-                self.candidateListVC.remove()
-                self.add(self.lunchMapVC, to: self.containerView)
-
-                self.candidateListVC.updatePlaces(places: self.interactor.dataSource)
+                self.candidateListVC.view.isHidden = true
+                self.lunchMapVC.view.isHidden = false
             case .list:
                 self.toggleDisplayButton.setTitle(L10n.mapViewButton, for: .normal)
                 self.toggleDisplayButton.setImage(Asset.Assets.mapButtonIcon.image, for: .normal)
-
-                self.lunchMapVC.remove()
-                self.add(self.candidateListVC, to: self.containerView)
-
-                self.lunchMapVC.updatePlaces(places: self.interactor.dataSource)
+                self.candidateListVC.view.isHidden = false
+                self.lunchMapVC.view.isHidden = true
             }
         }, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchRequiredData()
-
         setupMapView()
         setupListView()
-        setupToggleButton()
         setupFilterSection()
         setupSearchContainerView()
+        updateToggleButton()
 
         locationService.startLocationUpdates()
         locationService.delegate = self
+
+        searchForPlaces()
     }
 
     fileprivate func searchForPlaces(with query: String? = nil) {
@@ -176,28 +168,14 @@ final class MainViewController: UIViewController {
 
             switch result {
             case .success(let places):
-                switch self.state {
-                case .list:
-                    self.candidateListVC.updatePlaces(places: places)
-                case .map:
+                DispatchQueue.main.async {
                     self.lunchMapVC.updatePlaces(places: places)
+                    self.candidateListVC.updatePlaces(places: places)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-    }
-
-    fileprivate func fetchRequiredData() {
-        searchForPlaces()
-    }
-
-    fileprivate func filterPlaces() {
-        let pricingTier = priceSegmentedControl.selectedSegmentIndex == priceSegmentedControl.numberOfSegments - 1 ? nil : priceSegmentedControl.selectedSegmentIndex + 1
-        let isOpen = openNowButton.isSelected ? true : nil
-        let filteredResults = interactor.filterResults(isOpen: isOpen, pricingTier: pricingTier)
-        candidateListVC.updatePlaces(places: filteredResults)
-        lunchMapVC.updatePlaces(places: filteredResults)
     }
 }
 
@@ -236,6 +214,14 @@ extension MainViewController {
                 self.filtersContainerView.isHidden = true
             })
         }
+    }
+
+    fileprivate func filterPlaces() {
+        let pricingTier = priceSegmentedControl.selectedSegmentIndex == priceSegmentedControl.numberOfSegments - 1 ? nil : priceSegmentedControl.selectedSegmentIndex + 1
+        let isOpen = openNowButton.isSelected ? true : nil
+        let filteredResults = interactor.filterResults(isOpen: isOpen, pricingTier: pricingTier)
+        candidateListVC.updatePlaces(places: filteredResults)
+        lunchMapVC.updatePlaces(places: filteredResults)
     }
 }
 

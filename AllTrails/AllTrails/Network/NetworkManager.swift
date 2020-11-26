@@ -38,7 +38,9 @@ final class NetworkManager {
                 return
             }
 
-            guard response != nil, let data = data else { return }
+            guard response != nil, let data = data else {
+                return
+            }
 
             if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
                 completion(.success(responseObject))
