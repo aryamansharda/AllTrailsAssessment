@@ -25,11 +25,17 @@ final class CandidateListVCDefaultInteractor: CandidateListVCInteractor {
     }
 }
 
+protocol CandidateListVCDelegate: AnyObject {
+    func candidateListVCDidSelectPlace(_ candidateListVC: CandidateListViewController, place: Place)
+}
+
 final class CandidateListViewController: UIViewController {
     @IBOutlet fileprivate(set) var tableView: UITableView!
 
     fileprivate var interactor: CandidateListVCInteractor = CandidateListVCDefaultInteractor()
-    private var dataSource = [Place]()
+    fileprivate var dataSource = [Place]()
+
+    weak var delegate: CandidateListVCDelegate?
 
     // MARK: - Public
     func injectDependencies(interactor: CandidateListVCInteractor) {
@@ -40,6 +46,7 @@ final class CandidateListViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.backgroundColor = Asset.Colors.background.color
         view.backgroundColor = Asset.Colors.background.color
 
@@ -77,4 +84,8 @@ extension CandidateListViewController: UITableViewDataSource {
 
         return cell
     }
+}
+
+extension CandidateListViewController: UITableViewDelegate {
+    
 }

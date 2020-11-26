@@ -9,10 +9,17 @@ import UIKit
 
 /// For testing purposes, this allows us to easily substitute in a mock API that returns a hard-coded set of places
 protocol MainVCInteractor {
+    func openPlaceInMaps(place: Place)
     func fetchPlaces(completion: @escaping (Result<NearbyPlacesResponse, Error>) -> Void)
 }
 
 final class MainVCDefaultInteractor: MainVCInteractor {
+    func openPlaceInMaps(place: Place) {
+        if let url = URL(string: "http://maps.apple.com/?address=\(place.vicinity)") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
     func fetchPlaces(completion: @escaping (Result<NearbyPlacesResponse, Error>) -> Void) {
         let endpoint = GooglePlacesAPI.getNearbyPlaces(searchText: "burgers")
         NetworkManager.request(endpoint: endpoint) { (result: Result<NearbyPlacesResponse, Error>) in
@@ -21,14 +28,9 @@ final class MainVCDefaultInteractor: MainVCInteractor {
     }
 }
 
-final class MainVCTestInteractor: MainVCInteractor {
-    func fetchPlaces(completion: @escaping (Result<NearbyPlacesResponse, Error>) -> Void) {
-//        completion(.success("Test Places"))
-    }
-}
-
 final class MainViewController: UIViewController {
     fileprivate var interactor: MainVCInteractor = MainVCDefaultInteractor()
+    
     fileprivate var lunchMapVC: LunchMapViewController {
         return StoryboardScene.Main.lunchMapViewController.instantiate()
     }
