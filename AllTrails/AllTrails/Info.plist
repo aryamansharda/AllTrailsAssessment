@@ -64,10 +64,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>googlechromes</string>
-        <string>comgooglemaps</string>
-    </array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please provide AllTrails location permissions in order to find restaurants near you</string>
 </dict>
 </plist>

@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95Z-T6-ooI">
                                 <rect key="frame" x="16" y="153" width="382" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5go-iw-V9Y">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5go-iw-V9Y" customClass="ATToggleButton" customModule="AllTrails" customModuleProvider="target">
                                         <rect key="frame" x="16" y="14" width="100" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="AHK-FA-CBs"/>
@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="trailing" secondItem="5vQ-QA-a9c" secondAttribute="trailing" constant="16" id="vkG-mk-eMZ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55x-Oa-99j">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55x-Oa-99j" customClass="ATFloatingButton" customModule="AllTrails" customModuleProvider="target">
                                 <rect key="frame" x="157" y="774" width="100" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Wyo-cA-Gwz"/>
@@ -83,7 +83,7 @@
                                             <constraint firstAttribute="height" constant="50" id="UJb-rc-wRM"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOF-sO-zDC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOF-sO-zDC" customClass="ATToggleButton" customModule="AllTrails" customModuleProvider="target">
                                         <rect key="frame" x="24" y="58" width="54" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="52" id="8Go-Kk-RrQ"/>
@@ -326,9 +326,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0hQ-79-9dZ" firstAttribute="top" secondItem="Qp4-M4-oCm" secondAttribute="top" id="7vN-q3-WNe"/>
-                            <constraint firstItem="hk3-4S-jh7" firstAttribute="trailing" secondItem="0hQ-79-9dZ" secondAttribute="trailing" id="CpZ-44-RDz"/>
+                            <constraint firstAttribute="trailing" secondItem="0hQ-79-9dZ" secondAttribute="trailing" id="CpZ-44-RDz"/>
                             <constraint firstAttribute="bottom" secondItem="0hQ-79-9dZ" secondAttribute="bottom" id="JEd-sV-Iqe"/>
-                            <constraint firstItem="0hQ-79-9dZ" firstAttribute="leading" secondItem="hk3-4S-jh7" secondAttribute="leading" id="SFL-6f-8dt"/>
+                            <constraint firstItem="0hQ-79-9dZ" firstAttribute="leading" secondItem="Qp4-M4-oCm" secondAttribute="leading" id="SFL-6f-8dt"/>
                         </constraints>
                     </view>
                     <connections>

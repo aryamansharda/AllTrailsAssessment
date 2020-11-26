@@ -16,6 +16,8 @@ internal enum L10n {
   internal static let candidateRestaurantClosed = L10n.tr("Localizable", "candidate_restaurant_closed")
   /// Open
   internal static let candidateRestaurantOpen = L10n.tr("Localizable", "candidate_restaurant_open")
+  /// Filter
+  internal static let filter = L10n.tr("Localizable", "filter")
   /// Open Now
   internal static let filterOpenNow = L10n.tr("Localizable", "filter_open_now")
   /// List

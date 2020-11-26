@@ -77,7 +77,6 @@ extension CandidateListViewController: UITableViewDataSource {
 
         let photoURL = interactor.generatePhotoURL(place: dataSource[indexPath.row])
         cell.configure(place: dataSource[indexPath.row], photoURL: photoURL)
-
         return cell
     }
 }

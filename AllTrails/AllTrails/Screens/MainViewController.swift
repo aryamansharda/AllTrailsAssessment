@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import CoreLocation
 
-/// For testing purposes, this allows us to easily substitute in a mock API that returns a hard-coded set of places
 protocol MainVCInteractor {
     var dataSource: [Place] { get set }
+    var lastKnownLocation: CLLocationCoordinate2D? { get set }
 
     func openPlaceInMaps(place: Place)
     func fetchPlaces(query: String?, completion: @escaping (Result<[Place], Error>) -> Void)
@@ -18,6 +19,7 @@ protocol MainVCInteractor {
 
 final class MainVCDefaultInteractor: MainVCInteractor {
     var dataSource = [Place]()
+    var lastKnownLocation: CLLocationCoordinate2D?
 
     func openPlaceInMaps(place: Place) {
         if let encodedAddress = place.vicinity.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
@@ -41,7 +43,9 @@ final class MainVCDefaultInteractor: MainVCInteractor {
     }
 
     func fetchPlaces(query: String?, completion: @escaping (Result<[Place], Error>) -> Void) {
-        let endpoint = GooglePlacesAPI.getNearbyPlaces(searchText: query)
+        let endpoint = GooglePlacesAPI.getNearbyPlaces(searchText: query,
+                                                       latitude: lastKnownLocation?.latitude,
+                                                       longitude: lastKnownLocation?.longitude)
         NetworkManager.request(endpoint: endpoint) { (result: Result<NearbyPlacesResponse, Error>) in
             switch result {
             case .success(let response):
@@ -59,6 +63,7 @@ final class MainViewController: UIViewController {
     fileprivate var interactor: MainVCInteractor = MainVCDefaultInteractor()
     fileprivate var lunchMapVC: LunchMapViewController = StoryboardScene.Main.lunchMapViewController.instantiate()
     fileprivate var candidateListVC: CandidateListViewController = StoryboardScene.Main.candidateListViewController.instantiate()
+    fileprivate var locationService = LocationService()
 
     fileprivate enum DisplayState {
         case map
@@ -75,9 +80,9 @@ final class MainViewController: UIViewController {
     @IBOutlet fileprivate(set) var containerView: UIView!
     @IBOutlet fileprivate(set) var searchContainerView: UIView!
     @IBOutlet fileprivate(set) var filtersContainerView: UIView!
-    @IBOutlet fileprivate(set) var toggleDisplayButton: UIButton!
-    @IBOutlet fileprivate(set) var toggleFilterButton: UIButton!
-    @IBOutlet fileprivate(set) var openNowButton: UIButton!
+    @IBOutlet fileprivate(set) var toggleDisplayButton: ATFloatingButton!
+    @IBOutlet fileprivate(set) var toggleFilterButton: ATToggleButton!
+    @IBOutlet fileprivate(set) var openNowButton: ATToggleButton!
     @IBOutlet fileprivate(set) var filterSectionHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate(set) var searchBar: ATSearchBar!
     @IBOutlet fileprivate(set) var priceSegmentedControl: UISegmentedControl!
@@ -94,16 +99,13 @@ final class MainViewController: UIViewController {
     }
 
     fileprivate func setupMapView() {
-
+        lunchMapVC.injectDependencies(interactor: LunchMapVCDefaultInteractor())
+        add(lunchMapVC, to: containerView)
     }
 
     fileprivate func setupFilterSection() {
-        toggleFilterButton.layer.cornerRadius = 6
-        toggleFilterButton.layer.borderWidth = 1
-        toggleFilterButton.layer.borderColor = Asset.Colors.lightGray.color.cgColor
-        toggleFilterButton.setTitle("Filter", for: .normal)
-        toggleFilterButton.titleLabel?.font = TextStyle.subtitle.font
-        toggleFilterButton.setTitleColor(Asset.Colors.boldText.color, for: .normal)
+        toggleFilterButton.setTitle(L10n.filter, for: .normal)
+        openNowButton.setTitle(L10n.filterOpenNow, for: .normal)
 
         filtersContainerView.backgroundColor = .systemGroupedBackground
         filtersContainerView.layer.cornerRadius = 6
@@ -111,14 +113,6 @@ final class MainViewController: UIViewController {
         filtersContainerView.isHidden = true
         filtersContainerView.alpha = 0
         filterSectionHeightConstraint.constant = 0
-
-        openNowButton.layer.cornerRadius = 6
-        openNowButton.layer.borderWidth = 1
-        openNowButton.layer.borderColor = Asset.Colors.lightGray.color.cgColor
-        openNowButton.setTitle(L10n.filterOpenNow, for: .normal)
-        openNowButton.titleLabel?.font = TextStyle.subtitle.font
-        openNowButton.setTitleColor(Asset.Colors.boldText.color, for: .normal)
-        openNowButton.setTitleColor(Asset.Colors.white.color, for: .selected)
 
         let font: [NSAttributedString.Key: Any] = [.font: TextStyle.subtitle.font]
         priceSegmentedControl.setTitleTextAttributes(font, for: .normal)
@@ -134,17 +128,6 @@ final class MainViewController: UIViewController {
     }
 
     fileprivate func setupToggleButton() {
-        toggleDisplayButton.setTitleColor(Asset.Colors.white.color, for: .normal)
-        toggleDisplayButton.backgroundColor = Asset.Colors.buttonGreen.color
-        toggleDisplayButton.layer.masksToBounds = false
-        toggleDisplayButton.layer.shadowColor = Asset.Colors.shadow.color.cgColor
-        toggleDisplayButton.layer.shadowOpacity = 0.2
-        toggleDisplayButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        toggleDisplayButton.layer.shadowRadius = 4.0
-        toggleDisplayButton.layer.cornerRadius = 6.0
-        toggleDisplayButton.titleLabel?.font = TextStyle.bold.font
-        toggleDisplayButton.setTitleColor(Asset.Colors.white.color, for: .normal)
-
         updateToggleButton()
     }
 
@@ -157,12 +140,16 @@ final class MainViewController: UIViewController {
 
                 self.candidateListVC.remove()
                 self.add(self.lunchMapVC, to: self.containerView)
+
+                self.candidateListVC.updatePlaces(places: self.interactor.dataSource)
             case .list:
                 self.toggleDisplayButton.setTitle(L10n.mapViewButton, for: .normal)
                 self.toggleDisplayButton.setImage(Asset.Assets.mapButtonIcon.image, for: .normal)
 
                 self.lunchMapVC.remove()
                 self.add(self.candidateListVC, to: self.containerView)
+
+                self.lunchMapVC.updatePlaces(places: self.interactor.dataSource)
             }
         }, completion: nil)
     }
@@ -176,13 +163,25 @@ final class MainViewController: UIViewController {
         setupToggleButton()
         setupFilterSection()
         setupSearchContainerView()
+
+        locationService.startLocationUpdates()
+        locationService.delegate = self
     }
 
     fileprivate func searchForPlaces(with query: String? = nil) {
         interactor.fetchPlaces(query: query) { [weak self] result in
+            guard let self = self else {
+                return
+            }
+
             switch result {
             case .success(let places):
-                self?.candidateListVC.updatePlaces(places: places)
+                switch self.state {
+                case .list:
+                    self.candidateListVC.updatePlaces(places: places)
+                case .map:
+                    self.lunchMapVC.updatePlaces(places: places)
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -198,16 +197,18 @@ final class MainViewController: UIViewController {
         let isOpen = openNowButton.isSelected ? true : nil
         let filteredResults = interactor.filterResults(isOpen: isOpen, pricingTier: pricingTier)
         candidateListVC.updatePlaces(places: filteredResults)
+        lunchMapVC.updatePlaces(places: filteredResults)
     }
+}
 
-    // TODO: Add mark for events
+// MARK: - Events
+extension MainViewController {
     @IBAction fileprivate func toggleButtonPressed(_ sender: UIButton) {
         state = state == .list ? .map : .list
     }
 
     @IBAction fileprivate func filterOpenNowPressed(_ sender: UIButton) {
         openNowButton.isSelected = !openNowButton.isSelected
-        openNowButton.backgroundColor = openNowButton.isSelected ? Asset.Colors.buttonGreen.color : Asset.Colors.lightGray.color
         filterPlaces()
     }
 
@@ -216,6 +217,8 @@ final class MainViewController: UIViewController {
     }
 
     @IBAction fileprivate func toggleFilterPressed(_ sender: UIButton) {
+        toggleFilterButton.isSelected = !toggleFilterButton.isSelected
+
         if filtersContainerView.isHidden {
             self.filtersContainerView.isHidden = false
 
@@ -232,7 +235,6 @@ final class MainViewController: UIViewController {
             }, completion: { _ in
                 self.filtersContainerView.isHidden = true
             })
-
         }
     }
 }
@@ -253,5 +255,11 @@ extension MainViewController: UISearchBarDelegate {
         }
 
         searchForPlaces(with: searchQuery)
+    }
+}
+
+extension MainViewController: LocationServiceDelegate {
+    func locationServiceUpdateLocation(currentLocation: CLLocation) {
+        interactor.lastKnownLocation = currentLocation.coordinate
     }
 }
