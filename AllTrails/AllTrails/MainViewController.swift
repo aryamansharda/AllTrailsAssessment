@@ -50,7 +50,11 @@ final class MainViewController: UIViewController {
 
     // MARK: - Public
     @IBOutlet fileprivate(set) var containerView: UIView!
+    @IBOutlet fileprivate(set) var searchContainerView: UIView!
+    @IBOutlet fileprivate(set) var filtersContainerView: UIView!
     @IBOutlet fileprivate(set) var toggleDisplayButton: UIButton!
+    @IBOutlet fileprivate(set) var toggleFilterButton: UIButton!
+    @IBOutlet fileprivate(set) var filterSectionHeightConstraint: NSLayoutConstraint!
 
     func injectDependencies(interactor: MainVCInteractor) {
         self.interactor = interactor
@@ -64,6 +68,27 @@ final class MainViewController: UIViewController {
 
     fileprivate func setupMapView() {
 //        add(lunchMapVC, to: containerView)
+    }
+
+    fileprivate func setupFilterSection() {
+        toggleFilterButton.layer.cornerRadius = 6
+        toggleFilterButton.layer.borderWidth = 1
+        toggleFilterButton.layer.borderColor = Asset.Colors.lightGray.color.cgColor
+        toggleFilterButton.setTitle("Filter", for: .normal)
+        toggleFilterButton.titleLabel?.font = TextStyle.subtitle.font
+        toggleFilterButton.setTitleColor(Asset.Colors.boldText.color, for: .normal)
+
+        filtersContainerView.isHidden = true
+        filtersContainerView.alpha = 0
+        filterSectionHeightConstraint.constant = 0
+        view.layoutIfNeeded()
+    }
+
+    fileprivate func setupSearchContainerView() {
+        searchContainerView.layer.shadowColor = Asset.Colors.shadow.color.cgColor
+        searchContainerView.layer.shadowOpacity = 0.05
+        searchContainerView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        searchContainerView.layer.shadowRadius = 4.0
     }
 
     fileprivate func setupToggleButton() {
@@ -107,6 +132,8 @@ final class MainViewController: UIViewController {
         setupMapView()
         setupListView()
         setupToggleButton()
+        setupFilterSection()
+        setupSearchContainerView()
     }
 
     fileprivate func fetchRequiredData() {
@@ -123,5 +150,26 @@ final class MainViewController: UIViewController {
     // TODO: Add mark for events
     @IBAction func toggleButtonPressed(_ sender: UIButton) {
         state = state == .list ? .map : .list
+    }
+
+    @IBAction func toggleFilterPressed(_ sender: UIButton) {
+        if filtersContainerView.isHidden {
+            self.filtersContainerView.isHidden = false
+
+            UIView.animate(withDuration: 0.3) {
+                self.filtersContainerView.alpha = 1
+                self.filterSectionHeightConstraint.constant = 60
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.filtersContainerView.alpha = 0
+                self.filterSectionHeightConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                self.filtersContainerView.isHidden = true
+            })
+
+        }
     }
 }

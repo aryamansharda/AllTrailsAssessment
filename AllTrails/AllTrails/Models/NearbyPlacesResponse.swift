@@ -16,7 +16,6 @@ struct NearbyPlacesResponse: Decodable {
 struct Place: Decodable {
     let geometry: Geometry
     let icon: String
-    let id: String?
     let name: String
     let openingHours: OpeningHours?
     let photos: [Photo]
@@ -26,10 +25,13 @@ struct Place: Decodable {
     let types: [String]
     let vicinity: String
     let userRatingsTotal: Int
+    //swiftlint:disable:next identifier_name
+    let id: String?
 
     enum CodingKeys: String, CodingKey {
         case geometry
         case icon
+        //swiftlint:disable:next identifier_name
         case id
         case name
         case openingHours = "opening_hours"
