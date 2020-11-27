@@ -1,5 +1,5 @@
 //
-//  CandidateCell.swift
+//  LunchListCell.swift
 //  AllTrails
 //
 //  Created by Aryaman Sharda on 11/25/20.
@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-protocol CandidateCellDelegate: AnyObject {
-    func candidateCellDidPressFavorite(_ candidateCell: CandidateCell, location: String)
+protocol LunchListCellDelegate: AnyObject {
+    func lunchListCellDidPressFavorite(_ lunchListCell: LunchListCell, location: String)
 }
 
-class CandidateCell: UITableViewCell {
+class LunchListCell: UITableViewCell {
     @IBOutlet fileprivate(set) var containerView: UIView!
     @IBOutlet fileprivate(set) var thumbnailImageView: UIImageView!
     @IBOutlet fileprivate(set) var placeNameLabel: UILabel!
@@ -21,7 +21,7 @@ class CandidateCell: UITableViewCell {
     @IBOutlet fileprivate(set) var starStackView: UIStackView!
     @IBOutlet fileprivate(set) var ratingCountLabel: UILabel!
 
-    weak var delegate: CandidateCellDelegate?
+    weak var delegate: LunchListCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

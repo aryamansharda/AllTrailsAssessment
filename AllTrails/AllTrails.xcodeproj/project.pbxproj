@@ -41,7 +41,7 @@
 		C1A6BFC4256ED1C20098F6B3 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6BFC3256ED1C20098F6B3 /* Fonts.swift */; };
 		C1A6C01A256ED2A80098F6B3 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C019256ED2A70098F6B3 /* TextStyle.swift */; };
 		C1A6C028256EF95C0098F6B3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1A6C027256EF95C0098F6B3 /* Localizable.strings */; };
-		C1A6C031256EFB7E0098F6B3 /* CandidateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C030256EFB7E0098F6B3 /* CandidateCell.swift */; };
+		C1A6C031256EFB7E0098F6B3 /* LunchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C030256EFB7E0098F6B3 /* LunchListCell.swift */; };
 		C1A6C039256F228A0098F6B3 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C038256F228A0098F6B3 /* UIViewController+ChildViewController.swift */; };
 		C1A6C03E256F25910098F6B3 /* LunchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C03D256F25910098F6B3 /* LunchMapViewController.swift */; };
 		C1A6C044256F3D650098F6B3 /* ATSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C043256F3D650098F6B3 /* ATSearchBar.swift */; };
@@ -112,7 +112,7 @@
 		C1A6BFC3256ED1C20098F6B3 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		C1A6C019256ED2A70098F6B3 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		C1A6C027256EF95C0098F6B3 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		C1A6C030256EFB7E0098F6B3 /* CandidateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateCell.swift; sourceTree = "<group>"; };
+		C1A6C030256EFB7E0098F6B3 /* LunchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchListCell.swift; sourceTree = "<group>"; };
 		C1A6C038256F228A0098F6B3 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		C1A6C03D256F25910098F6B3 /* LunchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchMapViewController.swift; sourceTree = "<group>"; };
 		C1A6C043256F3D650098F6B3 /* ATSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATSearchBar.swift; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 		C1A6C02F256EFB6E0098F6B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C1A6C030256EFB7E0098F6B3 /* CandidateCell.swift */,
+				C1A6C030256EFB7E0098F6B3 /* LunchListCell.swift */,
 				C130B74025705915002E773B /* Lunch Marker Restaurant View */,
 			);
 			path = Views;
@@ -672,7 +672,7 @@
 				C1A6C044256F3D650098F6B3 /* ATSearchBar.swift in Sources */,
 				C1A6BF4F256E34770098F6B3 /* Assets.swift in Sources */,
 				C130B79C257094E4002E773B /* Secrets.swift in Sources */,
-				C1A6C031256EFB7E0098F6B3 /* CandidateCell.swift in Sources */,
+				C1A6C031256EFB7E0098F6B3 /* LunchListCell.swift in Sources */,
 				C1DDEE2D256E1C8700F861DC /* L10n.swift in Sources */,
 				C1A6C03E256F25910098F6B3 /* LunchMapViewController.swift in Sources */,
 				C1A6C049256F6D9F0098F6B3 /* UIView+Shadow.swift in Sources */,
