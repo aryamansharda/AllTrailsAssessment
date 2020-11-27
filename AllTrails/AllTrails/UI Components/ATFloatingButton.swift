@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ATFloatingButton: UIButton {
+final class ATFloatingButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -19,7 +19,7 @@ class ATFloatingButton: UIButton {
         setup()
     }
 
-    private func setup() {
+    fileprivate func setup() {
         setTitleColor(Asset.Colors.white.color, for: .normal)
         backgroundColor = Asset.Colors.buttonGreen.color
         layer.masksToBounds = false

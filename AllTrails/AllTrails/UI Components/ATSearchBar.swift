@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ATSearchBar: UISearchBar {
+final class ATSearchBar: UISearchBar {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -19,7 +19,7 @@ class ATSearchBar: UISearchBar {
         setup()
     }
 
-    private func setup() {
+    fileprivate func setup() {
         setImage(Asset.Assets.star.image, for: .search, state: .normal)
         returnKeyType = .search
         heightAnchor.constraint(equalToConstant: 32).isActive = true

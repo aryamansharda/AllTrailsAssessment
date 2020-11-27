@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ATToggleButton: UIButton {
+final class ATToggleButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -25,7 +25,7 @@ class ATToggleButton: UIButton {
         }
     }
 
-    private func setup() {
+    fileprivate func setup() {
         layer.cornerRadius = 6
         layer.borderWidth = 1
         layer.borderColor = Asset.Colors.lightGray.color.cgColor
