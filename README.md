@@ -23,3 +23,4 @@ As requested, I implemented this project in the same way I would approach any pr
 ## What I'd Change
 - I usually like to keep the names of the colors and the image names the same as what the design team calls them internally. I've found that this shared language helps when making UI changes. However, it seemed like the symbol names and screen names in Sketch were sort of informal, so I opted out of doing this here.
 - Additionally, I typically create a Theme class that encapsulated all of the varied styling in the application, but it just seemed a little overkill to do so for a small project like this and even more difficult to do without fully understanding all of the brand guidelines. 
+- I wouldn't upload the API key normally, but just so the project runs without issue, I'll include it in the repo
