@@ -20,6 +20,8 @@
 		C130B74525705BF7002E773B /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B74425705BF7002E773B /* UIView+NibLoadable.swift */; };
 		C130B75A25707CF0002E773B /* ATMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B75925707CF0002E773B /* ATMapMarker.swift */; };
 		C130B76625708677002E773B /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B76525708677002E773B /* UIViewController+UIAlertController.swift */; };
+		C130B783257092EB002E773B /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C130B782257092EB002E773B /* Secrets.plist */; };
+		C130B79C257094E4002E773B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B78725709317002E773B /* Secrets.swift */; };
 		C16DC6CC256DF325004F27CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CB256DF325004F27CE /* AppDelegate.swift */; };
 		C16DC6CE256DF325004F27CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CD256DF325004F27CE /* SceneDelegate.swift */; };
 		C16DC6D0256DF325004F27CE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CF256DF325004F27CE /* MainViewController.swift */; };
@@ -83,6 +85,8 @@
 		C130B74425705BF7002E773B /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		C130B75925707CF0002E773B /* ATMapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMapMarker.swift; sourceTree = "<group>"; };
 		C130B76525708677002E773B /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
+		C130B782257092EB002E773B /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		C130B78725709317002E773B /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		C16DC6C8256DF325004F27CE /* AllTrails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllTrails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C16DC6CB256DF325004F27CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C16DC6CD256DF325004F27CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				C130B71925703F07002E773B /* LocationService.swift */,
+				C130B78725709317002E773B /* Secrets.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				C16DC6D4256DF327004F27CE /* Assets.xcassets */,
 				C16DC6D6256DF327004F27CE /* LaunchScreen.storyboard */,
 				C16DC6D9256DF327004F27CE /* Info.plist */,
+				C130B782257092EB002E773B /* Secrets.plist */,
 			);
 			path = AllTrails;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 				C1A6BF56256E3A920098F6B3 /* ProximaNova-Regular.otf in Resources */,
 				C1DDEE3B256E1CD500F861DC /* Colors.xcassets in Resources */,
 				C1A6C028256EF95C0098F6B3 /* Localizable.strings in Resources */,
+				C130B783257092EB002E773B /* Secrets.plist in Resources */,
 				C1A6BF57256E3A920098F6B3 /* ProximaNova-Bold.otf in Resources */,
 				C16DC6D5256DF327004F27CE /* Assets.xcassets in Resources */,
 				C130B73C25705910002E773B /* LunchMarkerRestaurantView.xib in Resources */,
@@ -664,6 +671,7 @@
 				C130B73725705906002E773B /* LunchMarkerRestaurantView.swift in Sources */,
 				C1A6C044256F3D650098F6B3 /* ATSearchBar.swift in Sources */,
 				C1A6BF4F256E34770098F6B3 /* Assets.swift in Sources */,
+				C130B79C257094E4002E773B /* Secrets.swift in Sources */,
 				C1A6C031256EFB7E0098F6B3 /* CandidateCell.swift in Sources */,
 				C1DDEE2D256E1C8700F861DC /* L10n.swift in Sources */,
 				C1A6C03E256F25910098F6B3 /* LunchMapViewController.swift in Sources */,

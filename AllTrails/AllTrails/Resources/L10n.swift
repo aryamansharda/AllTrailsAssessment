@@ -18,12 +18,16 @@ internal enum L10n {
   internal static let candidateRestaurantClosed = L10n.tr("Localizable", "candidate_restaurant_closed")
   /// Open
   internal static let candidateRestaurantOpen = L10n.tr("Localizable", "candidate_restaurant_open")
+  /// Error
+  internal static let error = L10n.tr("Localizable", "error")
   /// Filter
   internal static let filter = L10n.tr("Localizable", "filter")
   /// Open Now
   internal static let filterOpenNow = L10n.tr("Localizable", "filter_open_now")
   /// List
   internal static let listViewButton = L10n.tr("Localizable", "list_view_button")
+  /// Please change your location permissions in Settings in order to use AllTrails at Lunch.
+  internal static let locationPermissionsRequired = L10n.tr("Localizable", "location_permissions_required")
   /// Map
   internal static let mapViewButton = L10n.tr("Localizable", "map_view_button")
   /// For best results, please enter a search term.

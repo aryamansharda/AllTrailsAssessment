@@ -63,6 +63,6 @@ extension GooglePlacesAPI {
     }
 
     static var key: String {
-        "AIzaSyDIKzjfQQCahwJ9yEr8gBU9TqJ3MvbPXyY"
+        Secrets.googlePlacesAPIKey
     }
 }

@@ -13,8 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // TODO: Deal with this better
-        GMSServices.provideAPIKey("AIzaSyDIKzjfQQCahwJ9yEr8gBU9TqJ3MvbPXyY")
+        GMSServices.provideAPIKey(Secrets.googlePlacesAPIKey)
         return true
     }
 

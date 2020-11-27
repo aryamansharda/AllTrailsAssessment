@@ -267,4 +267,8 @@ extension MainViewController: LocationServiceDelegate {
             searchForPlaces()
         }
     }
+
+    func locationServiceDidFailWithError(error: Error) {
+        showAlert(alertText: L10n.error, alertMessage: L10n.locationPermissionsRequired)
+    }
 }

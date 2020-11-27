@@ -10,7 +10,7 @@ import CoreLocation
 
 protocol LocationServiceDelegate: AnyObject {
     func locationServiceUpdateLocation(currentLocation: CLLocation)
-//    func locationServiceDidFailWithError(error: Error)
+    func locationServiceDidFailWithError(error: Error)
 }
 
 final class LocationService: NSObject {
@@ -34,8 +34,10 @@ extension LocationService: CLLocationManagerDelegate {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
             locationManager.startUpdatingLocation()
         } else {
-//            let error = NSError(domain: "com.AllTrails", code: 200, userInfo: [NSLocalizedDescriptionKey: "Location permissions missing"])
-//            delegate?.locationServiceDidFailWithError(error: error)
+            let error = NSError(domain: "com.AllTrails",
+                                code: 200,
+                                userInfo: [NSLocalizedDescriptionKey: "Location permissions missing"])
+            delegate?.locationServiceDidFailWithError(error: error)
         }
     }
 
