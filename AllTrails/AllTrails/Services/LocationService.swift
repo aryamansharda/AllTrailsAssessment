@@ -34,9 +34,8 @@ extension LocationService: CLLocationManagerDelegate {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
             locationManager.startUpdatingLocation()
         } else {
-            // TODO:
-//            let error = NSError(domain: "com.AllTrails", code: 200, userInfo: <#T##[String : Any]?#>)
-//            delegate?.locationServiceDidFailWithError(error: <#T##Error#>)
+//            let error = NSError(domain: "com.AllTrails", code: 200, userInfo: [NSLocalizedDescriptionKey: "Location permissions missing"])
+//            delegate?.locationServiceDidFailWithError(error: error)
         }
     }
 

@@ -10,7 +10,7 @@
 		1ED0BF487326E740A9C16C18 /* Pods_AllTrailsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF04E1626FD4A180C58EE27 /* Pods_AllTrailsTests.framework */; };
 		9F19972920835FCB65B808A6 /* Pods_AllTrails_AllTrailsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C0326B349694FA84B25A10 /* Pods_AllTrails_AllTrailsUITests.framework */; };
 		A118A11B20222AE10C8AE457 /* Pods_AllTrails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735B21E0BAAB7DBE6BDA0632 /* Pods_AllTrails.framework */; };
-		C12CF371256E254100FD4651 /* CandidateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CF370256E254100FD4651 /* CandidateListViewController.swift */; };
+		C12CF371256E254100FD4651 /* LunchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CF370256E254100FD4651 /* LunchListViewController.swift */; };
 		C130B71A25703F07002E773B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B71925703F07002E773B /* LocationService.swift */; };
 		C130B71F2570460B002E773B /* ATFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B71E2570460B002E773B /* ATFloatingButton.swift */; };
 		C130B724257046B1002E773B /* ATToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B723257046B1002E773B /* ATToggleButton.swift */; };
@@ -72,7 +72,7 @@
 		41C0528A46A3774E47C7C907 /* Pods-AllTrailsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllTrailsTests.debug.xcconfig"; path = "Target Support Files/Pods-AllTrailsTests/Pods-AllTrailsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		735B21E0BAAB7DBE6BDA0632 /* Pods_AllTrails.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllTrails.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0B438C5786C66AB26501B7 /* Pods-AllTrails.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllTrails.debug.xcconfig"; path = "Target Support Files/Pods-AllTrails/Pods-AllTrails.debug.xcconfig"; sourceTree = "<group>"; };
-		C12CF370256E254100FD4651 /* CandidateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateListViewController.swift; sourceTree = "<group>"; };
+		C12CF370256E254100FD4651 /* LunchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchListViewController.swift; sourceTree = "<group>"; };
 		C130B71925703F07002E773B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		C130B71E2570460B002E773B /* ATFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATFloatingButton.swift; sourceTree = "<group>"; };
 		C130B723257046B1002E773B /* ATToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATToggleButton.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				C16DC6CF256DF325004F27CE /* MainViewController.swift */,
-				C12CF370256E254100FD4651 /* CandidateListViewController.swift */,
+				C12CF370256E254100FD4651 /* LunchListViewController.swift */,
 				C1A6C03D256F25910098F6B3 /* LunchMapViewController.swift */,
 			);
 			path = Screens;
@@ -205,6 +205,14 @@
 				C130B73B25705910002E773B /* LunchMarkerRestaurantView.xib */,
 			);
 			path = "Lunch Marker Restaurant View";
+			sourceTree = "<group>";
+		};
+		C130B75E25707E9D002E773B /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				C16DC71B256DF3E8004F27CE /* GooglePlacesAPI.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 		C16DC6BF256DF325004F27CE = {
@@ -303,7 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				C16DC711256DF3C9004F27CE /* API.swift */,
-				C16DC71B256DF3E8004F27CE /* GooglePlacesAPI.swift */,
+				C130B75E25707E9D002E773B /* Endpoints */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -646,7 +654,7 @@
 				C1A6C039256F228A0098F6B3 /* UIViewController+ChildViewController.swift in Sources */,
 				C130B724257046B1002E773B /* ATToggleButton.swift in Sources */,
 				C130B75A25707CF0002E773B /* ATMapMarker.swift in Sources */,
-				C12CF371256E254100FD4651 /* CandidateListViewController.swift in Sources */,
+				C12CF371256E254100FD4651 /* LunchListViewController.swift in Sources */,
 				C16DC6D0256DF325004F27CE /* MainViewController.swift in Sources */,
 				C130B7322570562B002E773B /* Log.swift in Sources */,
 				C130B73725705906002E773B /* LunchMarkerRestaurantView.swift in Sources */,
