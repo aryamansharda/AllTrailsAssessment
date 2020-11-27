@@ -19,6 +19,7 @@ As requested, I implemented this project in the same way I would approach any pr
 - Tapping on the restaurant in the list view and long pressing the info windows on the map view will open the directions to the restaurant in Apple Maps.
 - Full landscape support
 - Adding support to filter by "Open Now" status and $, $$, $$$, or $$$$
+- Tells user they need to use enable location, will automatically fetch results once permissions change
 
 ## What I'd Change
 - I usually like to keep the names of the colors and the image names the same as what the design team calls them internally. I've found that this shared language helps when making UI changes. However, it seemed like the symbol names and screen names in Sketch were sort of informal, so I opted out of doing this here.
