@@ -10,6 +10,8 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// Ok
+  internal static let alertConfirmation = L10n.tr("Localizable", "alert_confirmation")
   ///  • 
   internal static let bulletPoint = L10n.tr("Localizable", "bullet_point")
   /// Closed
@@ -24,8 +26,12 @@ internal enum L10n {
   internal static let listViewButton = L10n.tr("Localizable", "list_view_button")
   /// Map
   internal static let mapViewButton = L10n.tr("Localizable", "map_view_button")
+  /// For best results, please enter a search term.
+  internal static let resultsQualitySuggestion = L10n.tr("Localizable", "results_quality_suggestion")
   /// Search for a restaurant
   internal static let searchForARestaurant = L10n.tr("Localizable", "search_for_a_restaurant")
+  /// Tip
+  internal static let tip = L10n.tr("Localizable", "tip")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

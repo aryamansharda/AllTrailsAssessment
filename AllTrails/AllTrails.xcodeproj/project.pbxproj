@@ -19,6 +19,7 @@
 		C130B73C25705910002E773B /* LunchMarkerRestaurantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C130B73B25705910002E773B /* LunchMarkerRestaurantView.xib */; };
 		C130B74525705BF7002E773B /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B74425705BF7002E773B /* UIView+NibLoadable.swift */; };
 		C130B75A25707CF0002E773B /* ATMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B75925707CF0002E773B /* ATMapMarker.swift */; };
+		C130B76625708677002E773B /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B76525708677002E773B /* UIViewController+UIAlertController.swift */; };
 		C16DC6CC256DF325004F27CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CB256DF325004F27CE /* AppDelegate.swift */; };
 		C16DC6CE256DF325004F27CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CD256DF325004F27CE /* SceneDelegate.swift */; };
 		C16DC6D0256DF325004F27CE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CF256DF325004F27CE /* MainViewController.swift */; };
@@ -81,6 +82,7 @@
 		C130B73B25705910002E773B /* LunchMarkerRestaurantView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LunchMarkerRestaurantView.xib; sourceTree = "<group>"; };
 		C130B74425705BF7002E773B /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		C130B75925707CF0002E773B /* ATMapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMapMarker.swift; sourceTree = "<group>"; };
+		C130B76525708677002E773B /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
 		C16DC6C8256DF325004F27CE /* AllTrails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllTrails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C16DC6CB256DF325004F27CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C16DC6CD256DF325004F27CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				C16DC70A256DF398004F27CE /* UIImageView+RemoteImageURL.swift */,
 				C16DC70B256DF398004F27CE /* UIView+AutoLayout.swift */,
 				C1A6C038256F228A0098F6B3 /* UIViewController+ChildViewController.swift */,
+				C130B76525708677002E773B /* UIViewController+UIAlertController.swift */,
 				C1A6C048256F6D9F0098F6B3 /* UIView+Shadow.swift */,
 				C130B74425705BF7002E773B /* UIView+NibLoadable.swift */,
 			);
@@ -645,6 +648,7 @@
 				C1A6BFC4256ED1C20098F6B3 /* Fonts.swift in Sources */,
 				C1DDEE2C256E1C8700F861DC /* Storyboard.swift in Sources */,
 				C1DDEE1C256E022D00F861DC /* NearbyPlacesResponse.swift in Sources */,
+				C130B76625708677002E773B /* UIViewController+UIAlertController.swift in Sources */,
 				C130B71F2570460B002E773B /* ATFloatingButton.swift in Sources */,
 				C16DC70C256DF398004F27CE /* UIImageView+RemoteImageURL.swift in Sources */,
 				C1A6C01A256ED2A80098F6B3 /* TextStyle.swift in Sources */,

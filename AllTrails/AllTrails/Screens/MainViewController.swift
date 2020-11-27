@@ -44,7 +44,7 @@ final class MainVCDefaultInteractor: MainVCInteractor {
 
     func fetchPlaces(query: String?, completion: @escaping (Result<[Place], Error>) -> Void) {
         guard let latitude = lastKnownLocation?.latitude, let longitude = lastKnownLocation?.longitude else {
-            print("No location fix available.")
+            Log.warning("Search failed due to no known user location")
             return
         }
 
@@ -55,7 +55,6 @@ final class MainVCDefaultInteractor: MainVCInteractor {
                 self.dataSource = response.results.filter { $0.priceLevel != nil && $0.openingHours != nil }
                 completion(.success(self.dataSource))
             case .failure(let error):
-                print(error.localizedDescription)
                 completion(.failure(error))
             }
         }
@@ -63,6 +62,18 @@ final class MainVCDefaultInteractor: MainVCInteractor {
 }
 
 final class MainViewController: UIViewController {
+
+    // MARK: - Properties
+    @IBOutlet fileprivate(set) var containerView: UIView!
+    @IBOutlet fileprivate(set) var searchContainerView: UIView!
+    @IBOutlet fileprivate(set) var filtersContainerView: UIView!
+    @IBOutlet fileprivate(set) var toggleDisplayButton: ATFloatingButton!
+    @IBOutlet fileprivate(set) var toggleFilterButton: ATToggleButton!
+    @IBOutlet fileprivate(set) var openNowButton: ATToggleButton!
+    @IBOutlet fileprivate(set) var searchBar: ATSearchBar!
+    @IBOutlet fileprivate(set) var filterSectionHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate(set) var priceSegmentedControl: UISegmentedControl!
+
     fileprivate var interactor: MainVCInteractor = MainVCDefaultInteractor()
     fileprivate var lunchMapVC: LunchMapViewController = StoryboardScene.Main.lunchMapViewController.instantiate()
     fileprivate var lunchListVC: LunchListViewController = StoryboardScene.Main.lunchListViewController.instantiate()
@@ -80,21 +91,26 @@ final class MainViewController: UIViewController {
     }
 
     // MARK: - Public
-    @IBOutlet fileprivate(set) var containerView: UIView!
-    @IBOutlet fileprivate(set) var searchContainerView: UIView!
-    @IBOutlet fileprivate(set) var filtersContainerView: UIView!
-    @IBOutlet fileprivate(set) var toggleDisplayButton: ATFloatingButton!
-    @IBOutlet fileprivate(set) var toggleFilterButton: ATToggleButton!
-    @IBOutlet fileprivate(set) var openNowButton: ATToggleButton!
-    @IBOutlet fileprivate(set) var searchBar: ATSearchBar!
-    @IBOutlet fileprivate(set) var filterSectionHeightConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate(set) var priceSegmentedControl: UISegmentedControl!
-
     func injectDependencies(interactor: MainVCInteractor) {
         self.interactor = interactor
     }
 
-    // MARK: - UIViewController
+    // MARK: - View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupMapView()
+        setupListView()
+        setupFilterSection()
+        setupSearchContainerView()
+        updateToggleButton()
+
+        locationService.startLocationUpdates()
+        locationService.delegate = self
+
+        searchForPlaces()
+    }
+
+    // MARK: - View
     fileprivate func setupListView() {
         lunchListVC.injectDependencies(interactor: LunchListVCDefaultInteractor())
         lunchListVC.delegate = self
@@ -103,6 +119,7 @@ final class MainViewController: UIViewController {
 
     fileprivate func setupMapView() {
         lunchMapVC.injectDependencies(interactor: LunchMapVCDefaultInteractor())
+        lunchMapVC.delegate = self
         addChild(lunchMapVC, to: containerView)
     }
 
@@ -145,21 +162,10 @@ final class MainViewController: UIViewController {
             }
         }, completion: nil)
     }
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupMapView()
-        setupListView()
-        setupFilterSection()
-        setupSearchContainerView()
-        updateToggleButton()
-
-        locationService.startLocationUpdates()
-        locationService.delegate = self
-
-        searchForPlaces()
-    }
-
+// MARK: - Business Logic
+extension MainViewController {
     fileprivate func searchForPlaces(with query: String? = nil) {
         interactor.fetchPlaces(query: query) { [weak self] result in
             guard let self = self else {
@@ -176,6 +182,14 @@ final class MainViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+
+    fileprivate func filterPlaces() {
+        let pricingTier = priceSegmentedControl.selectedSegmentIndex == priceSegmentedControl.numberOfSegments - 1 ? nil : priceSegmentedControl.selectedSegmentIndex + 1
+        let isOpen = openNowButton.isSelected ? true : nil
+        let filteredResults = interactor.filterResults(isOpen: isOpen, pricingTier: pricingTier)
+        lunchListVC.updatePlaces(places: filteredResults)
+        lunchMapVC.updatePlaces(places: filteredResults)
     }
 }
 
@@ -215,18 +229,17 @@ extension MainViewController {
             })
         }
     }
+}
 
-    fileprivate func filterPlaces() {
-        let pricingTier = priceSegmentedControl.selectedSegmentIndex == priceSegmentedControl.numberOfSegments - 1 ? nil : priceSegmentedControl.selectedSegmentIndex + 1
-        let isOpen = openNowButton.isSelected ? true : nil
-        let filteredResults = interactor.filterResults(isOpen: isOpen, pricingTier: pricingTier)
-        lunchListVC.updatePlaces(places: filteredResults)
-        lunchMapVC.updatePlaces(places: filteredResults)
+// MARK: - Delegates
+extension MainViewController: LunchListVCDelegate {
+    func lunchListVCDidSelectPlace(_ candidateListVC: LunchListViewController, place: Place) {
+        interactor.openPlaceInMaps(place: place)
     }
 }
 
-extension MainViewController: LunchListVCDelegate {
-    func lunchListVCDidSelectPlace(_ candidateListVC: LunchListViewController, place: Place) {
+extension MainViewController: LunchMapVCDelegate {
+    func lunchMapVCDidSelectPlace(_ lunchMapVC: LunchMapViewController, place: Place) {
         interactor.openPlaceInMaps(place: place)
     }
 }
@@ -235,9 +248,11 @@ extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         guard let searchQuery = searchBar.text else {
-            // TODO:
-            print("Please enter a phrase")
             return
+        }
+
+        if searchQuery.isEmpty {
+            showAlert(alertText: L10n.tip, alertMessage: L10n.resultsQualitySuggestion)
         }
 
         searchForPlaces(with: searchQuery)
@@ -248,7 +263,6 @@ extension MainViewController: LocationServiceDelegate {
     func locationServiceUpdateLocation(currentLocation: CLLocation) {
         interactor.lastKnownLocation = currentLocation.coordinate
 
-        print("Coordinate: ", currentLocation.coordinate)
         if interactor.dataSource.isEmpty {
             searchForPlaces()
         }

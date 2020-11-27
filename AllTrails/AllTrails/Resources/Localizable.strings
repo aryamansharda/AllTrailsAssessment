@@ -13,3 +13,6 @@
 "search_for_a_restaurant" = "Search for a restaurant";
 "filter_open_now" = "Open Now";
 "filter" = "Filter";
+"alert_confirmation" = "Ok";
+"tip" = "Tip";
+"results_quality_suggestion" = "For best results, please enter a search term.";
