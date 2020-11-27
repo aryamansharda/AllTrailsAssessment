@@ -81,7 +81,7 @@ extension LunchMapViewController {
             $0.includingCoordinate($1.position)
         }
 
-        mapView.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 120.0))
+        mapView.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 20.0))
     }
 }
 

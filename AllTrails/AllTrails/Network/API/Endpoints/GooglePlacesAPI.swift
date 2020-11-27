@@ -37,8 +37,8 @@ enum GooglePlacesAPI: API {
             var params = [
                 URLQueryItem(name: "key", value: GooglePlacesAPI.key),
                 URLQueryItem(name: "language", value: Locale.current.languageCode),
-                URLQueryItem(name: "rankby", value: "distance"),
                 URLQueryItem(name: "type", value: "restaurant"),
+                URLQueryItem(name: "radius", value: "6500"),
                 URLQueryItem(name: "location", value: "\(latitude),\(longitude)")
             ]
 
