@@ -34,7 +34,7 @@ internal enum L10n {
   internal static func ratingsStarAccessibilityLabel(_ p1: Any) -> String {
     return L10n.tr("Localizable", "ratings_star_accessibility_label", String(describing: p1))
   }
-  /// %@ ratings total
+  /// %@ ratings
   internal static func ratingsTotalAccessibilityLabel(_ p1: Any) -> String {
     return L10n.tr("Localizable", "ratings_total_accessibility_label", String(describing: p1))
   }
