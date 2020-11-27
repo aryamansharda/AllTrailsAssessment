@@ -29,67 +29,32 @@ enum Log {
         }
     }
 
-    static func info(
-        _ str: StaticString,
-        shouldLogContext: Bool = true,
-        file: String = #file,
-        function: String = #function,
-        line: Int = #line
-    ) {
+    static func info(_ str: StaticString, shouldLogContext: Bool = true, file: String = #file, function: String = #function, line: Int = #line) {
         let context = Context(file: file, function: function, line: line)
         Log.handleLog(level: .info, str: str.description, error: nil, shouldLogContext: shouldLogContext, context: context)
     }
 
-    static func warning(
-        _ str: StaticString,
-        file: String = #file,
-        function: String = #function,
-        line: Int = #line
-    ) {
+    static func warning(_ str: StaticString, file: String = #file, function: String = #function, line: Int = #line) {
         let context = Context(file: file, function: function, line: line)
         Log.handleLog(level: .warning, str: str.description, error: nil, shouldLogContext: true, context: context)
     }
 
-    static func warning(
-        _ str: StaticString,
-        _ error: Error,
-        file: String = #file,
-        function: String = #function,
-        line: Int = #line
-    ) {
+    static func warning(_ str: StaticString, _ error: Error, file: String = #file, function: String = #function, line: Int = #line) {
         let context = Context(file: file, function: function, line: line)
         Log.handleLog(level: .warning, str: str.description, error: error, shouldLogContext: true, context: context)
     }
 
-    static func error(
-        _ str: StaticString,
-        file: String = #file,
-        function: String = #function,
-        line: Int = #line
-    ) {
+    static func error(_ str: StaticString, file: String = #file, function: String = #function, line: Int = #line) {
         let context = Context(file: file, function: function, line: line)
         Log.handleLog(level: .error, str: str.description, error: nil, shouldLogContext: true, context: context)
     }
 
-    static func error(
-        _ str: StaticString,
-        _ error: Error,
-        file: String = #file,
-        function: String = #function,
-        line: Int = #line
-    ) {
+    static func error(_ str: StaticString, _ error: Error, file: String = #file, function: String = #function, line: Int = #line) {
         let context = Context(file: file, function: function, line: line)
         Log.handleLog(level: .error, str: str.description, error: error, shouldLogContext: true, context: context)
     }
 
-    fileprivate static func handleLog(
-        level: LogLevel,
-        str: String,
-        error: Error?,
-        shouldLogContext: Bool,
-        context: Context
-    ) {
-
+    fileprivate static func handleLog(level: LogLevel, str: String, error: Error?, shouldLogContext: Bool, context: Context) {
         let logComponents = ["[\(level.prefix)]", str]
 
         var fullString = logComponents.joined(separator: " ")

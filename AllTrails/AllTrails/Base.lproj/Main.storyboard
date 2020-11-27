@@ -179,10 +179,10 @@
             </objects>
             <point key="canvasLocation" x="1516" y="624"/>
         </scene>
-        <!--Candidate List View Controller-->
+        <!--Lunch List View Controller-->
         <scene sceneID="5e9-s7-H7L">
             <objects>
-                <viewController storyboardIdentifier="CandidateListViewController" id="ocG-wI-zOp" customClass="CandidateListViewController" customModule="AllTrails" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LunchListViewController" id="ocG-wI-zOp" customClass="LunchListViewController" customModule="AllTrails" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qp4-M4-oCm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

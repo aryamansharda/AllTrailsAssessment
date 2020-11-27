@@ -45,7 +45,7 @@ extension LocationService: CLLocationManagerDelegate {
             return
         }
 
-        delegate?.locationServiceUpdateLocation(currentLocation: location)
         self.lastLocation = location
+        delegate?.locationServiceUpdateLocation(currentLocation: location)
     }
 }

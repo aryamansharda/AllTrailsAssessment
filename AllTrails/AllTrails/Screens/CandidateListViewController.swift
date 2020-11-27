@@ -1,5 +1,5 @@
 //
-//  CandidateListViewController.swift
+//  LunchListViewController.swift
 //  AllTrails
 //
 //  Created by Aryaman Sharda on 11/24/20.
@@ -23,10 +23,10 @@ final class CandidateListVCDefaultInteractor: CandidateListVCInteractor {
 }
 
 protocol CandidateListVCDelegate: AnyObject {
-    func candidateListVCDidSelectPlace(_ candidateListVC: CandidateListViewController, place: Place)
+    func candidateListVCDidSelectPlace(_ candidateListVC: LunchListViewController, place: Place)
 }
 
-final class CandidateListViewController: UIViewController {
+final class LunchListViewController: UIViewController {
     @IBOutlet fileprivate(set) var tableView: UITableView!
 
     fileprivate var interactor: CandidateListVCInteractor = CandidateListVCDefaultInteractor()
@@ -53,14 +53,15 @@ final class CandidateListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = Asset.Colors.background.color
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = Asset.Colors.background.color
-        view.backgroundColor = Asset.Colors.background.color
+        tableView.contentInset = UIEdgeInsets(top: 24, left: 0, bottom: 0, right: 0)
     }
 }
 
-extension CandidateListViewController: UITableViewDataSource {
+extension LunchListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -80,7 +81,7 @@ extension CandidateListViewController: UITableViewDataSource {
     }
 }
 
-extension CandidateListViewController: UITableViewDelegate {
+extension LunchListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.candidateListVCDidSelectPlace(self, place: dataSource[indexPath.row])
     }

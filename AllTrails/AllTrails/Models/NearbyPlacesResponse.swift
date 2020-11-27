@@ -20,11 +20,11 @@ struct Place: Decodable {
     let openingHours: OpeningHours?
     let photos: [Photo]?
     let priceLevel: Int?
-    let rating: Double
+    let rating: Double?
     let placeID, reference: String
     let types: [String]
     let vicinity: String
-    let userRatingsTotal: Int
+    let userRatingsTotal: Int?
     let id: String?
 
     enum CodingKeys: String, CodingKey {

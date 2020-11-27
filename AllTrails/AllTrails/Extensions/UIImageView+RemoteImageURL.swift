@@ -26,14 +26,14 @@ extension UIImageView {
             return nil
         }
 
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { data, _, _ in
+        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
             DispatchQueue.main.async {
                 if let data = data, let downloadedImage = UIImage(data: data) {
                     imageCache.setObject(downloadedImage, forKey: NSString(string: urlString))
                     self.image = downloadedImage
                 }
             }
-        })
+        }
 
         task.resume()
         return task

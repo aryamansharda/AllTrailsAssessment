@@ -10,6 +10,7 @@ import UIKit
 
 final class LunchMarkerRestaurantView: UIView {
     @IBOutlet fileprivate(set) var thumbnailImageView: UIImageView!
+    @IBOutlet fileprivate(set) var backgroundImageView: UIImageView!
     @IBOutlet fileprivate(set) var placeNameLabel: UILabel!
     @IBOutlet fileprivate(set) var supportingTextLabel: UILabel!
     @IBOutlet fileprivate(set) var starStackView: UIStackView!
@@ -17,24 +18,15 @@ final class LunchMarkerRestaurantView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = Asset.Colors.white.color
-        layer.borderWidth = 1
-        layer.borderColor = Asset.Colors.lightGray.color.cgColor
-        layer.cornerRadius = 8
-        layer.maskedCorners = [.layerMaxXMaxYCorner,
-                                             .layerMaxXMinYCorner,
-                                             .layerMinXMaxYCorner,
-                                             .layerMinXMinYCorner]
-
         placeNameLabel.font = TextStyle.bold.font
-        placeNameLabel.textColor = Asset.Colors.boldText.color
-
         supportingTextLabel.font = TextStyle.subtitle.font
-        supportingTextLabel.textColor = Asset.Colors.subtitleText.color
-
         ratingCountLabel.font = TextStyle.subtitle.font
+
+        placeNameLabel.textColor = Asset.Colors.boldText.color
+        supportingTextLabel.textColor = Asset.Colors.subtitleText.color
         ratingCountLabel.textColor = Asset.Colors.subtitleText.color
 
+        backgroundImageView.image = Asset.Assets.mapCard.image
     }
 
     func configure(place: Place, photoURL: String?) {
@@ -43,11 +35,6 @@ final class LunchMarkerRestaurantView: UIView {
         }
 
         placeNameLabel.text = place.name
-
-        layer.cornerRadius = 12
-        layer.borderWidth = 2
-        layer.borderColor = UIColor.green.cgColor
-
         setupSupportingText(place)
         setupRatingView(place)
     }
@@ -68,17 +55,18 @@ final class LunchMarkerRestaurantView: UIView {
             supportingText += currentStatus
         }
 
-        if supportingText.isEmpty {
-
-        }
-
         supportingTextLabel.text = supportingText
     }
 
     fileprivate func setupRatingView(_ place: Place) {
-        for index in 0..<Int(place.rating.rounded()) {
-            starStackView.arrangedSubviews[index].tintColor = Asset.Colors.starYellow.color
+        if let rating = place.rating {
+            for index in 0..<Int(rating.rounded()) {
+                starStackView.arrangedSubviews[index].tintColor = Asset.Colors.starYellow.color
+            }
         }
-        ratingCountLabel.text = "(\(place.userRatingsTotal))"
+
+        if let userRatingsTotal = place.userRatingsTotal {
+            ratingCountLabel.text = "(\(userRatingsTotal))"
+        }
     }
 }

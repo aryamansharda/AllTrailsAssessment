@@ -65,7 +65,7 @@ final class MainVCDefaultInteractor: MainVCInteractor {
 final class MainViewController: UIViewController {
     fileprivate var interactor: MainVCInteractor = MainVCDefaultInteractor()
     fileprivate var lunchMapVC: LunchMapViewController = StoryboardScene.Main.lunchMapViewController.instantiate()
-    fileprivate var candidateListVC: CandidateListViewController = StoryboardScene.Main.candidateListViewController.instantiate()
+    fileprivate var lunchListVC: LunchListViewController = StoryboardScene.Main.lunchListViewController.instantiate()
     fileprivate var locationService = LocationService()
 
     fileprivate enum DisplayState {
@@ -96,14 +96,14 @@ final class MainViewController: UIViewController {
 
     // MARK: - UIViewController
     fileprivate func setupListView() {
-        candidateListVC.injectDependencies(interactor: CandidateListVCDefaultInteractor())
-        candidateListVC.delegate = self
-        add(candidateListVC, to: containerView)
+        lunchListVC.injectDependencies(interactor: CandidateListVCDefaultInteractor())
+        lunchListVC.delegate = self
+        addChild(lunchListVC, to: containerView)
     }
 
     fileprivate func setupMapView() {
         lunchMapVC.injectDependencies(interactor: LunchMapVCDefaultInteractor())
-        add(lunchMapVC, to: containerView)
+        addChild(lunchMapVC, to: containerView)
     }
 
     fileprivate func setupFilterSection() {
@@ -135,12 +135,12 @@ final class MainViewController: UIViewController {
             case .map:
                 self.toggleDisplayButton.setTitle(L10n.listViewButton, for: .normal)
                 self.toggleDisplayButton.setImage(Asset.Assets.listButtonIcon.image, for: .normal)
-                self.candidateListVC.view.isHidden = true
+                self.lunchListVC.view.isHidden = true
                 self.lunchMapVC.view.isHidden = false
             case .list:
                 self.toggleDisplayButton.setTitle(L10n.mapViewButton, for: .normal)
                 self.toggleDisplayButton.setImage(Asset.Assets.mapButtonIcon.image, for: .normal)
-                self.candidateListVC.view.isHidden = false
+                self.lunchListVC.view.isHidden = false
                 self.lunchMapVC.view.isHidden = true
             }
         }, completion: nil)
@@ -170,7 +170,7 @@ final class MainViewController: UIViewController {
             case .success(let places):
                 DispatchQueue.main.async {
                     self.lunchMapVC.updatePlaces(places: places)
-                    self.candidateListVC.updatePlaces(places: places)
+                    self.lunchListVC.updatePlaces(places: places)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -220,13 +220,13 @@ extension MainViewController {
         let pricingTier = priceSegmentedControl.selectedSegmentIndex == priceSegmentedControl.numberOfSegments - 1 ? nil : priceSegmentedControl.selectedSegmentIndex + 1
         let isOpen = openNowButton.isSelected ? true : nil
         let filteredResults = interactor.filterResults(isOpen: isOpen, pricingTier: pricingTier)
-        candidateListVC.updatePlaces(places: filteredResults)
+        lunchListVC.updatePlaces(places: filteredResults)
         lunchMapVC.updatePlaces(places: filteredResults)
     }
 }
 
 extension MainViewController: CandidateListVCDelegate {
-    func candidateListVCDidSelectPlace(_ candidateListVC: CandidateListViewController, place: Place) {
+    func candidateListVCDidSelectPlace(_ candidateListVC: LunchListViewController, place: Place) {
         interactor.openPlaceInMaps(place: place)
     }
 }
@@ -247,5 +247,10 @@ extension MainViewController: UISearchBarDelegate {
 extension MainViewController: LocationServiceDelegate {
     func locationServiceUpdateLocation(currentLocation: CLLocation) {
         interactor.lastKnownLocation = currentLocation.coordinate
+
+        print("Coordinate: ", currentLocation.coordinate)
+        if interactor.dataSource.isEmpty {
+            searchForPlaces()
+        }
     }
 }

@@ -24,17 +24,19 @@ final class NetworkManager {
     ///   - completion: the JSON response converted to the provided Codable object, if successful, or failure otherwise
     class func request<T: Decodable>(endpoint: API, completion: @escaping (Result<T, Error>) -> Void) {
         let components = buildURL(endpoint: endpoint)
+        guard let url = components.url else {
+            Log.error("URL creation error")
+            return
+        }
 
-        guard let url = components.url else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = endpoint.method.rawValue
 
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
-
-            guard error == nil else {
-                completion(.failure(error!))
-                print(error?.localizedDescription ?? "Unknown error")
+            if let error = error {
+                completion(.failure(error))
+                Log.error("Unknown Error", error)
                 return
             }
 
@@ -45,9 +47,8 @@ final class NetworkManager {
             if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
                 completion(.success(responseObject))
             } else {
-                let error = NSError(domain: "com.AllTrails",
-                                    code: 200,
-                                    userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
+                let error = NSError(domain: "com.AllTrails", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
+                Log.error("Decode Error", error)
                 completion(.failure(error))
             }
         }

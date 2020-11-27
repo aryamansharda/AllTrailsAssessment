@@ -46,7 +46,7 @@ class CandidateCell: UITableViewCell {
         contentView.backgroundColor = Asset.Colors.background.color
     }
 
-    @IBAction func didPressFavorite(_ sender: UIButton) {
+    @IBAction fileprivate func didPressFavorite(_ sender: UIButton) {
         favoriteButton.isSelected = !favoriteButton.isSelected
 
         //swiftlint:disable:next line_length
@@ -81,17 +81,18 @@ class CandidateCell: UITableViewCell {
             supportingText += currentStatus
         }
 
-        if supportingText.isEmpty {
-            
-        }
-
         supportingTextLabel.text = supportingText
     }
 
     fileprivate func setupRatingView(_ place: Place) {
-        for index in 0..<Int(place.rating.rounded()) {
-            starStackView.arrangedSubviews[index].tintColor = Asset.Colors.starYellow.color
+        if let rating = place.rating {
+            for index in 0..<Int(rating.rounded()) {
+                starStackView.arrangedSubviews[index].tintColor = Asset.Colors.starYellow.color
+            }
         }
-        ratingCountLabel.text = "(\(place.userRatingsTotal))"
+
+        if let userRatingsTotal = place.userRatingsTotal {
+            ratingCountLabel.text = "(\(userRatingsTotal))"
+        }
     }
 }

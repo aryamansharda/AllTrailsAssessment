@@ -28,6 +28,7 @@ internal enum Asset {
     internal static let favoriteUnselected = ImageAsset(name: "favoriteUnselected")
     internal static let listButtonIcon = ImageAsset(name: "listButtonIcon")
     internal static let mapButtonIcon = ImageAsset(name: "mapButtonIcon")
+    internal static let mapCard = ImageAsset(name: "mapCard")
     internal static let markerSelected = ImageAsset(name: "markerSelected")
     internal static let markerUnselected = ImageAsset(name: "markerUnselected")
     internal static let mountain = ImageAsset(name: "mountain")

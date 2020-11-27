@@ -22,7 +22,7 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<AllTrails.MainViewController>(storyboard: Main.self)
 
-    internal static let candidateListViewController = SceneType<AllTrails.CandidateListViewController>(storyboard: Main.self, identifier: "CandidateListViewController")
+    internal static let lunchListViewController = SceneType<AllTrails.LunchListViewController>(storyboard: Main.self, identifier: "LunchListViewController")
 
     internal static let lunchMapViewController = SceneType<AllTrails.LunchMapViewController>(storyboard: Main.self, identifier: "LunchMapViewController")
   }
