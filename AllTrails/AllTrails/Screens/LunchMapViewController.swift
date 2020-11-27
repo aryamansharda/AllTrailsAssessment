@@ -28,11 +28,9 @@ protocol LunchMapVCDelegate: AnyObject {
 }
 
 class LunchMapViewController: UIViewController {
-    @IBOutlet fileprivate(set) var mapView: GMSMapView!
 
-    fileprivate let windowInfoSpacing: CGFloat = 80
-    fileprivate var infoWindow: LunchMarkerRestaurantView = LunchMarkerRestaurantView.fromNib()
-    fileprivate var locationMarker : ATMapMarker?
+    // MARK: - Properties
+    @IBOutlet fileprivate(set) var mapView: GMSMapView!
 
     fileprivate var interactor: LunchMapVCInteractor = LunchMapVCDefaultInteractor()
     fileprivate var markers = [ATMapMarker]()
@@ -76,49 +74,38 @@ class LunchMapViewController: UIViewController {
     }
 }
 
+// MARK: - Business Logic
 extension LunchMapViewController {
     fileprivate func focusMapToShowAllMarkers() {
         let bounds = markers.reduce(GMSCoordinateBounds()) {
             $0.includingCoordinate($1.position)
         }
+
         mapView.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 120.0))
     }
 }
 
 extension LunchMapViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        mapView.selectedMarker?.icon = Asset.Assets.markerUnselected.image
-        mapView.selectedMarker = marker
-        marker.icon = Asset.Assets.markerSelected.image
-
-        guard let mapMarker = marker as? ATMapMarker else {
-            return false
-        }
-
-        locationMarker = mapMarker
-//        infoWindow.removeFromSuperview()
-        infoWindow = LunchMarkerRestaurantView.fromNib()
-        infoWindow.configure(place: mapMarker.place, photoURL: nil)
-        mapMarker.iconView = infoWindow
-        mapMarker.icon = Asset.Assets.markerSelected.image
-//        infoWindow.center = mapView.projection.point(for: mapMarker.position)
-//        infoWindow.center.y -= windowInfoSpacing
-//        view.addSubview(infoWindow)
-
-        return true
-    }
-
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        locationMarker?.icon = Asset.Assets.markerUnselected.image
-        locationMarker?.iconView = nil
-    }
-
     func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
-        guard let place = locationMarker?.place else {
-            Log.warning("No attached place on map marker")
+        guard let mapMarker = marker as? ATMapMarker else {
+            Log.warning("Unknown marker type encountered")
             return
         }
 
-        delegate?.lunchMapVCDidSelectPlace(self, place: place)
+        delegate?.lunchMapVCDidSelectPlace(self, place: mapMarker.place)
+    }
+
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        return false
+    }
+
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        guard let mapMarker = marker as? ATMapMarker else {
+            return nil
+        }
+
+        let infoWindow: LunchMarkerRestaurantView = LunchMarkerRestaurantView.fromNib()
+        infoWindow.configure(place: mapMarker.place, photoURL: interactor.generatePhotoURL(place: mapMarker.place))
+        return infoWindow
     }
 }

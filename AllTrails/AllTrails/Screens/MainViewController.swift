@@ -96,7 +96,7 @@ final class MainViewController: UIViewController {
 
     // MARK: - UIViewController
     fileprivate func setupListView() {
-        lunchListVC.injectDependencies(interactor: CandidateListVCDefaultInteractor())
+        lunchListVC.injectDependencies(interactor: LunchListVCDefaultInteractor())
         lunchListVC.delegate = self
         addChild(lunchListVC, to: containerView)
     }
@@ -225,8 +225,8 @@ extension MainViewController {
     }
 }
 
-extension MainViewController: CandidateListVCDelegate {
-    func candidateListVCDidSelectPlace(_ candidateListVC: LunchListViewController, place: Place) {
+extension MainViewController: LunchListVCDelegate {
+    func lunchListVCDidSelectPlace(_ candidateListVC: LunchListViewController, place: Place) {
         interactor.openPlaceInMaps(place: place)
     }
 }

@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-protocol CandidateListVCInteractor {
+protocol LunchListVCInteractor {
     func generatePhotoURL(place: Place) -> String?
 }
 
-final class CandidateListVCDefaultInteractor: CandidateListVCInteractor {
+final class LunchListVCDefaultInteractor: LunchListVCInteractor {
     func generatePhotoURL(place: Place) -> String? {
         guard let photoReference = place.photos?.first?.photoReference else {
             return nil
@@ -22,14 +22,15 @@ final class CandidateListVCDefaultInteractor: CandidateListVCInteractor {
     }
 }
 
-protocol CandidateListVCDelegate: AnyObject {
-    func candidateListVCDidSelectPlace(_ candidateListVC: LunchListViewController, place: Place)
+protocol LunchListVCDelegate: AnyObject {
+    func lunchListVCDidSelectPlace(_ lunchListVC: LunchListViewController, place: Place)
 }
 
 final class LunchListViewController: UIViewController {
+    // MARK: - Properties
     @IBOutlet fileprivate(set) var tableView: UITableView!
 
-    fileprivate var interactor: CandidateListVCInteractor = CandidateListVCDefaultInteractor()
+    fileprivate var interactor: LunchListVCInteractor = LunchListVCDefaultInteractor()
     fileprivate var dataSource = [Place]() {
         didSet {
             DispatchQueue.main.async {
@@ -38,10 +39,10 @@ final class LunchListViewController: UIViewController {
         }
     }
 
-    weak var delegate: CandidateListVCDelegate?
+    weak var delegate: LunchListVCDelegate?
 
     // MARK: - Public
-    func injectDependencies(interactor: CandidateListVCInteractor) {
+    func injectDependencies(interactor: LunchListVCInteractor) {
         self.interactor = interactor
     }
 
@@ -61,6 +62,7 @@ final class LunchListViewController: UIViewController {
     }
 }
 
+// MARK: - Table View
 extension LunchListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -83,6 +85,6 @@ extension LunchListViewController: UITableViewDataSource {
 
 extension LunchListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.candidateListVCDidSelectPlace(self, place: dataSource[indexPath.row])
+        delegate?.lunchListVCDidSelectPlace(self, place: dataSource[indexPath.row])
     }
 }
