@@ -13,7 +13,7 @@ As requested, I implemented this project in the same way I would approach any pr
 - Dependency injection where applicable
 - iOS 13.0+
 - No warnings
-
+- Added accessibility support to the list view, though I don’t have much experience in making the map view accessible, so do to time constraints wasn’t able to look into it. 
 ## User Features
 - All of the required features in the the "AllTrails Lunchtime Restaurant Discovery" are implemented here. 
 - Tapping on the restaurant in the list view and long pressing the info windows on the map view will open the directions to the restaurant in Apple Maps.
