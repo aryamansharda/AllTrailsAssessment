@@ -24,6 +24,7 @@ internal enum Asset {
   internal enum Assets {
     internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let allTrailsAtLunchBanner = ImageAsset(name: "AllTrailsAtLunchBanner")
+    internal static let dish = ImageAsset(name: "dish")
     internal static let favoriteSelected = ImageAsset(name: "favoriteSelected")
     internal static let favoriteUnselected = ImageAsset(name: "favoriteUnselected")
     internal static let listButtonIcon = ImageAsset(name: "listButtonIcon")
@@ -32,6 +33,7 @@ internal enum Asset {
     internal static let markerSelected = ImageAsset(name: "markerSelected")
     internal static let markerUnselected = ImageAsset(name: "markerUnselected")
     internal static let mountain = ImageAsset(name: "mountain")
+    internal static let searchBarIcon = ImageAsset(name: "searchBarIcon")
     internal static let star = ImageAsset(name: "star")
   }
   internal enum Colors {

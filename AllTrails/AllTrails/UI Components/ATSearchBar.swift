@@ -20,18 +20,26 @@ final class ATSearchBar: UISearchBar {
     }
 
     fileprivate func setup() {
-        setImage(Asset.Assets.star.image, for: .search, state: .normal)
         returnKeyType = .search
         heightAnchor.constraint(equalToConstant: 32).isActive = true
 
-        searchTextField.leftView = nil
-        searchTextField.clearButtonMode = .never
-        searchTextField.layer.borderWidth = 1
-        searchTextField.layer.cornerRadius = 6
-        searchTextField.layer.borderColor = Asset.Colors.lightGray.color.cgColor
+        // Custom styling of search bar / search text field
+        clipsToBounds = true
+        searchBarStyle = .prominent
+        searchTextField.backgroundColor = .white
+        layer.borderColor = Asset.Colors.lightGray.color.cgColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 6
 
         let attributes: [NSAttributedString.Key: Any] = [.font: TextStyle.bold.font]
-        searchTextField.attributedPlaceholder = NSAttributedString(string: L10n.searchForARestaurant, attributes: attributes)
         searchTextField.font = TextStyle.bold.font
+        searchTextField.attributedPlaceholder = NSAttributedString(string: L10n.searchForARestaurant,
+                                                                   attributes: attributes)
+
+        // @workaround Re-purposing the bookmark button to show the search bar icon on the right
+        showsBookmarkButton = true
+        searchTextField.leftView = nil
+        searchTextField.clearButtonMode = .whileEditing
+        setImage(Asset.Assets.searchBarIcon.image, for: .bookmark, state: .normal)
     }
 }

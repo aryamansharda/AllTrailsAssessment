@@ -16,6 +16,7 @@ protocol LunchMapVCInteractor {
 final class LunchMapVCDefaultInteractor: LunchMapVCInteractor {
     func generatePhotoURL(place: Place) -> String? {
         guard let photoReference = place.photos?.first?.photoReference else {
+            Log.error("Unable to find photo reference")
             return nil
         }
 
