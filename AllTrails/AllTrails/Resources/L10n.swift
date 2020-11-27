@@ -30,6 +30,18 @@ internal enum L10n {
   internal static let locationPermissionsRequired = L10n.tr("Localizable", "location_permissions_required")
   /// Map
   internal static let mapViewButton = L10n.tr("Localizable", "map_view_button")
+  /// %@ stars
+  internal static func ratingsStarAccessibilityLabel(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "ratings_star_accessibility_label", String(describing: p1))
+  }
+  /// %@ ratings total
+  internal static func ratingsTotalAccessibilityLabel(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "ratings_total_accessibility_label", String(describing: p1))
+  }
+  /// (%@)
+  internal static func ratingsTotalLabel(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "ratings_total_label", String(describing: p1))
+  }
   /// For best results, please enter a search term.
   internal static let resultsQualitySuggestion = L10n.tr("Localizable", "results_quality_suggestion")
   /// Search for a restaurant

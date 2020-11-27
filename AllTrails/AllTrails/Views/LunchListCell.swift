@@ -35,15 +35,16 @@ class LunchListCell: UITableViewCell {
                                              .layerMinXMinYCorner]
 
         placeNameLabel.font = TextStyle.bold.font
-        placeNameLabel.textColor = Asset.Colors.boldText.color
+        ratingCountLabel.font = TextStyle.subtitle.font
 
         supportingTextLabel.font = TextStyle.subtitle.font
         supportingTextLabel.textColor = Asset.Colors.subtitleText.color
-
-        ratingCountLabel.font = TextStyle.subtitle.font
+        placeNameLabel.textColor = Asset.Colors.boldText.color
         ratingCountLabel.textColor = Asset.Colors.subtitleText.color
-
         contentView.backgroundColor = Asset.Colors.background.color
+
+        starStackView.isAccessibilityElement = true
+        accessibilityElements = [placeNameLabel, starStackView, ratingCountLabel, supportingTextLabel, favoriteButton].compactMap { $0 }
     }
 
     @IBAction fileprivate func didPressFavorite(_ sender: UIButton) {
@@ -89,10 +90,12 @@ class LunchListCell: UITableViewCell {
             for index in 0..<Int(rating.rounded()) {
                 starStackView.arrangedSubviews[index].tintColor = Asset.Colors.starYellow.color
             }
+            starStackView.accessibilityLabel = L10n.ratingsStarAccessibilityLabel(rating.rounded())
         }
 
         if let userRatingsTotal = place.userRatingsTotal {
-            ratingCountLabel.text = "(\(userRatingsTotal))"
+            ratingCountLabel.text = L10n.ratingsTotalLabel(userRatingsTotal)
+            ratingCountLabel.accessibilityLabel = L10n.ratingsTotalAccessibilityLabel(userRatingsTotal)
         }
     }
 }

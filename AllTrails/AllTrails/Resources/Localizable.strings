@@ -18,3 +18,6 @@
 "results_quality_suggestion" = "For best results, please enter a search term.";
 "location_permissions_required" = "Please change your location permissions in Settings in order to use AllTrails at Lunch.";
 "error" = "Error";
+"ratings_star_accessibility_label" = "%@ stars";
+"ratings_total_label" = "(%@)";
+"ratings_total_accessibility_label" = "%@ ratings";
