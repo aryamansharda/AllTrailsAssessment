@@ -91,6 +91,7 @@ final class MainViewController: UIViewController {
     }
 
     // MARK: - Public
+    // TODO: Load this view from the storyboard and pass in LocationService through DI
     func injectDependencies(interactor: MainVCInteractor) {
         self.interactor = interactor
     }
@@ -179,7 +180,7 @@ extension MainViewController {
                     self.lunchListVC.updatePlaces(places: places)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                Log.error("Failed to fetch nearby restaurants", error)
             }
         }
     }

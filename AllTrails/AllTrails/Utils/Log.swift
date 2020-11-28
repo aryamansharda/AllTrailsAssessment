@@ -6,6 +6,7 @@
 //
 
 import Foundation
+/// Used to log messages of different severity
 enum Log {
     enum LogLevel {
         case info, warning, error

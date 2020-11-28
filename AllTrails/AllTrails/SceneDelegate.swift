@@ -10,14 +10,17 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var appCoordinator: AppCoordinator?
 
-    func scene(_ scene: UIScene,
-               willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.makeKeyAndVisible()
+            self.window = window
 
-        //swiftlint:disable unused_optional_binding
-        guard let _ = (scene as? UIWindowScene) else {
-            return
+            let applicationCoordinator = AppCoordinator(window: window)
+            self.appCoordinator = applicationCoordinator
+            applicationCoordinator.start()
         }
     }
 }

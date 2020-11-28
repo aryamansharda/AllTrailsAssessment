@@ -16,7 +16,7 @@ protocol API {
     // Example: "maps.googleapis.com"
     var baseURL: String { get }
 
-    // "/maps/api/place/findplacefromtext/"
+    // "/maps/api/place/nearbysearch/"
     var path: String { get }
 
     // [URLQueryItem(name: "api_key", value: API_KEY)]

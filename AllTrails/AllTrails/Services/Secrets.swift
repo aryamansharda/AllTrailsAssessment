@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Secrets {
+internal enum Secrets {
     static var googlePlacesAPIKey: String {
         return loadKeyFromPlist(key: "GOOGLE_API_KEY")
     }

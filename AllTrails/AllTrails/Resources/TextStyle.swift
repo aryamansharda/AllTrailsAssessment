@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum TextStyle: String {
+internal enum TextStyle: String {
     case medium
     case subtitle
     case bold

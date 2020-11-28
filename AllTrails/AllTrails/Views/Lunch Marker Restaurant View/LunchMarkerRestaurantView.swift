@@ -31,8 +31,8 @@ final class LunchMarkerRestaurantView: UIView {
 
     func configure(place: Place, photoURL: String?) {
         if let photoURL = photoURL {
-            /// Google Map's info view will take a snapshot of this view to present, so the image might not be loaded at that time.
-            /// As a backup, we set a placeholder image "dish" in case.
+            // Google Map's info view will take a snapshot of this view to present, so the image might not be loaded at that time.
+            // As a backup, we set a placeholder image "dish" in case.
             thumbnailImageView.loadImageFromURL(urlString: photoURL, placeholder: Asset.Assets.dish.image)
         }
 

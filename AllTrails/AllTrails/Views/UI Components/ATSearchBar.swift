@@ -33,8 +33,7 @@ final class ATSearchBar: UISearchBar {
 
         let attributes: [NSAttributedString.Key: Any] = [.font: TextStyle.bold.font]
         searchTextField.font = TextStyle.bold.font
-        searchTextField.attributedPlaceholder = NSAttributedString(string: L10n.searchForARestaurant,
-                                                                   attributes: attributes)
+        searchTextField.attributedPlaceholder = NSAttributedString(string: L10n.searchForARestaurant, attributes: attributes)
 
         // @workaround Re-purposing the bookmark button to show the search bar icon on the right
         showsBookmarkButton = true

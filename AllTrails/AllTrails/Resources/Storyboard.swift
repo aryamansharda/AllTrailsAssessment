@@ -20,11 +20,11 @@ internal enum StoryboardScene {
   internal enum Main: StoryboardType {
     internal static let storyboardName = "Main"
 
-    internal static let initialScene = InitialSceneType<AllTrails.MainViewController>(storyboard: Main.self)
-
     internal static let lunchListViewController = SceneType<AllTrails.LunchListViewController>(storyboard: Main.self, identifier: "LunchListViewController")
 
     internal static let lunchMapViewController = SceneType<AllTrails.LunchMapViewController>(storyboard: Main.self, identifier: "LunchMapViewController")
+
+    internal static let mainViewController = SceneType<AllTrails.MainViewController>(storyboard: Main.self, identifier: "MainViewController")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name

@@ -22,6 +22,8 @@
 		C130B76625708677002E773B /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B76525708677002E773B /* UIViewController+UIAlertController.swift */; };
 		C130B783257092EB002E773B /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C130B782257092EB002E773B /* Secrets.plist */; };
 		C130B79C257094E4002E773B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B78725709317002E773B /* Secrets.swift */; };
+		C130B7B6257224FC002E773B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B7B4257224FB002E773B /* Coordinator.swift */; };
+		C130B7B7257224FC002E773B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130B7B5257224FC002E773B /* AppCoordinator.swift */; };
 		C16DC6CC256DF325004F27CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CB256DF325004F27CE /* AppDelegate.swift */; };
 		C16DC6CE256DF325004F27CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CD256DF325004F27CE /* SceneDelegate.swift */; };
 		C16DC6D0256DF325004F27CE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16DC6CF256DF325004F27CE /* MainViewController.swift */; };
@@ -45,7 +47,6 @@
 		C1A6C039256F228A0098F6B3 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C038256F228A0098F6B3 /* UIViewController+ChildViewController.swift */; };
 		C1A6C03E256F25910098F6B3 /* LunchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C03D256F25910098F6B3 /* LunchMapViewController.swift */; };
 		C1A6C044256F3D650098F6B3 /* ATSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C043256F3D650098F6B3 /* ATSearchBar.swift */; };
-		C1A6C049256F6D9F0098F6B3 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A6C048256F6D9F0098F6B3 /* UIView+Shadow.swift */; };
 		C1DDEE1C256E022D00F861DC /* NearbyPlacesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE1B256E022D00F861DC /* NearbyPlacesResponse.swift */; };
 		C1DDEE2C256E1C8700F861DC /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE29256E1C8700F861DC /* Storyboard.swift */; };
 		C1DDEE2D256E1C8700F861DC /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEE2A256E1C8700F861DC /* L10n.swift */; };
@@ -87,6 +88,8 @@
 		C130B76525708677002E773B /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
 		C130B782257092EB002E773B /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		C130B78725709317002E773B /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		C130B7B4257224FB002E773B /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C130B7B5257224FC002E773B /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C16DC6C8256DF325004F27CE /* AllTrails.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllTrails.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C16DC6CB256DF325004F27CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C16DC6CD256DF325004F27CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,7 +119,6 @@
 		C1A6C038256F228A0098F6B3 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		C1A6C03D256F25910098F6B3 /* LunchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchMapViewController.swift; sourceTree = "<group>"; };
 		C1A6C043256F3D650098F6B3 /* ATSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATSearchBar.swift; sourceTree = "<group>"; };
-		C1A6C048256F6D9F0098F6B3 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		C1DDEE1B256E022D00F861DC /* NearbyPlacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlacesResponse.swift; sourceTree = "<group>"; };
 		C1DDEE29256E1C8700F861DC /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		C1DDEE2A256E1C8700F861DC /* L10n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		C130B70B257038E7002E773B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C130B7BB25722500002E773B /* Coordinators */,
 				C16DC6CF256DF325004F27CE /* MainViewController.swift */,
 				C12CF370256E254100FD4651 /* LunchListViewController.swift */,
 				C1A6C03D256F25910098F6B3 /* LunchMapViewController.swift */,
@@ -200,6 +203,7 @@
 		C130B73025705623002E773B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C16DC700256DF34E004F27CE /* Extensions */,
 				C130B7312570562B002E773B /* Log.swift */,
 			);
 			path = Utils;
@@ -220,6 +224,15 @@
 				C16DC71B256DF3E8004F27CE /* GooglePlacesAPI.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		C130B7BB25722500002E773B /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C130B7B5257224FC002E773B /* AppCoordinator.swift */,
+				C130B7B4257224FB002E773B /* Coordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		C16DC6BF256DF325004F27CE = {
@@ -247,17 +260,15 @@
 		C16DC6CA256DF325004F27CE /* AllTrails */ = {
 			isa = PBXGroup;
 			children = (
-				C1DDEE28256E1C7300F861DC /* Resources */,
 				C16DC6CB256DF325004F27CE /* AppDelegate.swift */,
 				C16DC6CD256DF325004F27CE /* SceneDelegate.swift */,
 				C130B73025705623002E773B /* Utils */,
-				C1A6C042256F3D570098F6B3 /* UI Components */,
-				C16DC700256DF34E004F27CE /* Extensions */,
 				C16DC6FF256DF348004F27CE /* Network */,
 				C16DC6FE256DF33E004F27CE /* Models */,
 				C130B71825703EF6002E773B /* Services */,
 				C130B70B257038E7002E773B /* Screens */,
 				C1A6C02F256EFB6E0098F6B3 /* Views */,
+				C1DDEE28256E1C7300F861DC /* Resources */,
 				C16DC6D1256DF325004F27CE /* Main.storyboard */,
 				C1DDEE3A256E1CD500F861DC /* Colors.xcassets */,
 				C16DC6D4256DF327004F27CE /* Assets.xcassets */,
@@ -310,7 +321,6 @@
 				C16DC70B256DF398004F27CE /* UIView+AutoLayout.swift */,
 				C1A6C038256F228A0098F6B3 /* UIViewController+ChildViewController.swift */,
 				C130B76525708677002E773B /* UIViewController+UIAlertController.swift */,
-				C1A6C048256F6D9F0098F6B3 /* UIView+Shadow.swift */,
 				C130B74425705BF7002E773B /* UIView+NibLoadable.swift */,
 			);
 			path = Extensions;
@@ -337,6 +347,7 @@
 		C1A6C02F256EFB6E0098F6B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C1A6C042256F3D570098F6B3 /* UI Components */,
 				C1A6C030256EFB7E0098F6B3 /* LunchListCell.swift */,
 				C130B74025705915002E773B /* Lunch Marker Restaurant View */,
 			);
@@ -662,12 +673,14 @@
 				C16DC71C256DF3E8004F27CE /* GooglePlacesAPI.swift in Sources */,
 				C130B71A25703F07002E773B /* LocationService.swift in Sources */,
 				C16DC70D256DF398004F27CE /* UIView+AutoLayout.swift in Sources */,
+				C130B7B7257224FC002E773B /* AppCoordinator.swift in Sources */,
 				C1A6C039256F228A0098F6B3 /* UIViewController+ChildViewController.swift in Sources */,
 				C130B724257046B1002E773B /* ATToggleButton.swift in Sources */,
 				C130B75A25707CF0002E773B /* ATMapMarker.swift in Sources */,
 				C12CF371256E254100FD4651 /* LunchListViewController.swift in Sources */,
 				C16DC6D0256DF325004F27CE /* MainViewController.swift in Sources */,
 				C130B7322570562B002E773B /* Log.swift in Sources */,
+				C130B7B6257224FC002E773B /* Coordinator.swift in Sources */,
 				C130B73725705906002E773B /* LunchMarkerRestaurantView.swift in Sources */,
 				C1A6C044256F3D650098F6B3 /* ATSearchBar.swift in Sources */,
 				C1A6BF4F256E34770098F6B3 /* Assets.swift in Sources */,
@@ -675,7 +688,6 @@
 				C1A6C031256EFB7E0098F6B3 /* LunchListCell.swift in Sources */,
 				C1DDEE2D256E1C8700F861DC /* L10n.swift in Sources */,
 				C1A6C03E256F25910098F6B3 /* LunchMapViewController.swift in Sources */,
-				C1A6C049256F6D9F0098F6B3 /* UIView+Shadow.swift in Sources */,
 				C16DC6CC256DF325004F27CE /* AppDelegate.swift in Sources */,
 				C16DC717256DF3D7004F27CE /* NetworkManager.swift in Sources */,
 				C16DC6CE256DF325004F27CE /* SceneDelegate.swift in Sources */,

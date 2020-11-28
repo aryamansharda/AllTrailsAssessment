@@ -49,8 +49,8 @@ final class NetworkManager {
                 completion(.success(responseObject))
             } else {
                 let error = NSError(domain: "com.AllTrails", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
-                Log.error("Decode Error", error)
                 completion(.failure(error))
+                Log.error("Decode Error", error)
             }
         }
 
