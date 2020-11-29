@@ -91,7 +91,6 @@ final class MainViewController: UIViewController {
     }
 
     // MARK: - Public
-    // TODO: Load this view from the storyboard and pass in LocationService through DI
     func injectDependencies(interactor: MainVCInteractor) {
         self.interactor = interactor
     }
@@ -109,6 +108,13 @@ final class MainViewController: UIViewController {
         locationService.delegate = self
 
         searchForPlaces()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Handles the case of the user changing their location permissions in Settings and returning to the
+        // application in the same session
+        locationService.startLocationUpdates()
     }
 
     // MARK: - View
