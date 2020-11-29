@@ -1,9 +1,11 @@
 # AllTrailsAssessment
 
 ## Run Steps
-`cd AllTrailsAssessment-master/AllTrails`
-`pod install`
-`open AllTrails.xcworkspace/`
+```
+cd AllTrailsAssessment-master/AllTrails`
+pod install
+open AllTrails.xcworkspace/
+```
 
 ## Overview
 This is the implementation of the All Trails at Lunch homework assessment. 
